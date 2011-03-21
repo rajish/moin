@@ -1,0 +1,34 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="crudList" class="${type.name}">
+	
+	<h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+
+	<div id="crudListSearch">
+		#{crud.search /}
+	</div>
+
+	<div id="crudListTable">
+		#{crud.table fields:['select', 'number', 'date', 'customer', 'isPaid', 'createdAt', 'updatedAt']}
+			#{crud.custom 'select'}
+				<input type="checkbox" />
+			#{/crud.custom}
+			*{#{crud.custom 'customer'}
+				<a href="@{Customers.show(object.customer.id)}">${object.customer.name}</a>
+			#{/crud.custom}
+			}*
+			#{crud.custom 'number'}
+				<a href="@{Invoices.show(object.id)}">${object.number}</a>
+			#{/crud.custom}
+		#{/crud.table}
+	</div>
+	
+	<div id="crudListPagination">
+		#{crud.pagination /}
+	</div>
+	
+	<p id="crudListAdd">
+		<a href="@{blank()}">&{'crud.add', type.modelName}</a>
+	</p>
+
+</div>

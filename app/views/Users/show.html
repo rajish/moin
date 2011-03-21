@@ -1,0 +1,40 @@
+#{extends 'admin.html' /}
+ 
+#{ifErrors}
+        <p class="error">
+            &{'admin.user.error.header'}
+        </p>
+#{/ifErrors}
+ 
+#{form @save(user?.id)}
+ 	<p>#{field 'isAdmin'}
+		<label>&{'admin.user.isAdmin'}</label> 
+		<input type="checkbox" name="${field.name}" 
+			value="${user?.isAdmin}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p>#{field 'login'}
+		<label>&{'admin.user.login'}</label> 
+		<input type="text" name="${field.name}"
+		 	value="${user?.login}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p>#{field 'fullname'}
+		<label>&{'admin.user.fullname'}</label>
+		<input type="text" name="${field.name}"
+		 	value="${user?.fullname}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p>#{field 'email'}
+		<label>&{'admin.user.email'}</label>
+		<input type="text" name="${field.name}"
+		 	value="${user?.email}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p>#{field 'password'}
+		<label>&{'admin.user.password'}</label>
+		<input type="password" name="${field.name}"
+		 	value="${user?.password}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p>#{field 'confirmation'}
+		<label>&{'admin.user.confirm'}</label>
+		<input type="password" name="${field.name}" class="${field.errorClass}"/>
+	#{/field}</p>
+	<p><input type="submit" value="&{'admin.user.save'}"></p>
+#{/form}

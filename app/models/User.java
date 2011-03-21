@@ -1,11 +1,16 @@
 package models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import play.data.validation.Email;
+import play.data.validation.Equals;
+import play.data.validation.MinSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 
@@ -23,11 +28,20 @@ public class User extends Model {
 
 	}
 
+    public boolean isAdmin;
+    @Required
 	public String login;
+    @Required
 	public String fullname;
+	@Email
 	public String email;
+	@Required
+	@Equals("confirmation")
+	@MinSize(6)
 	public String password;
 	public String salt;
+	public Timestamp createdAt;
+	public Timestamp updatedAt;
 	
 	public User(String login, String name, String email, String password,
 			String repeatPass) throws PasswordsDontMatchException, DuplicateLoginException {

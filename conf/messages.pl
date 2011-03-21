@@ -1,0 +1,53 @@
+
+app.title=MoIn
+
+admin.navbar.index=Początek
+admin.navbar.users=Użytkownicy
+admin.title.administration=Administracja
+admin.header.administration=administracja
+admin.tools.logout=Wyloguj się
+admin.footer=
+
+crud.title=Administracja
+crud.home=Początek
+crud.blank=Nowy
+crud.index.title=Wybierz element do edycji
+crud.index.objectType=Typ obiektu
+crud.index.action=akcja
+crud.index.add=Dodaj
+crud.add=Dodaj &{%s}
+crud.list.title=&{%s}
+crud.list.size=%d &{%s}
+crud.list.totalSize=razem %d
+crud.pagination.previous=« Poprzednie
+crud.pagination.next=Next »
+crud.pagination.last=Last »»
+crud.pagination.first=«« Pierwsze
+crud.show.title=Edytuj &{%s}
+crud.save=Zapisz
+crud.saveAndContinue=Zapisz i edytuj dalej
+crud.cancel=Anuluj
+crud.hasErrors=Proszę poprawić błędy
+crud.blank.title=Dodaj &{%s}
+crud.saveAndAddAnother=Zapisz i utwórz następny
+crud.delete=Usuń &{%s}
+crud.created=&{%s} został utworzony
+crud.saved=&{%s} został zapisany
+crud.deleted=&{%s} został usunięty
+crud.delete.error=Nie można usunąć tego obiektu
+crud.search=Szukaj
+crud.none=(Żaden)
+crud.selectValue=(Wybierz wartość)
+
+crud.help.required=Wymagane.
+crud.help.minlength=Minimalna długość wynosi %d.
+crud.help.maxlength=Maksymalna długość wynosi %d.
+crud.help.email=Poprawny adres email.
+crud.help.dateformat=Format &{%s}.
+crud.help.numeric=Cyfry.
+crud.help.min=Musi być większy niż %d.
+crud.help.future=W przyszłości.
+crud.help.past=W przeszłości.
+crud.help.after=Po %s.
+crud.help.before=Przed %s.
+crud.help.range=Między %d i %d
