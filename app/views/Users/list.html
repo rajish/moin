@@ -1,7 +1,6 @@
 #{extends 'CRUD/layout.html' /}
 
 <div id="crudList" class="${type.name}">
-	
 	<h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
 
 	<div id="crudListSearch">
@@ -9,9 +8,12 @@
 	</div>
 
 	<div id="crudListTable">
-		#{crud.table fields:['isAdmin', 'login', 'fullname', 'email', 'password', 'salt', 'createdAt', 'updatedAt']}
+		#{crud.table fields:['admin.users.thead.delete', 'isAdmin', 'login', 'fullname', 'email', 'createdAt', 'updatedAt']}
+			#{crud.custom 'admin.users.thead.delete'}
+				#{a @delete(object.id)}&{'delete'}#{/a}
+			#{/crud.custom}
 			#{crud.custom 'login'}
-				<a href="@{Users.show(object.id)}">${object.login}</a>
+				#{a @show(object.id)}${object.login}#{/a}
 			#{/crud.custom}			
 		#{/crud.table}
 	</div>

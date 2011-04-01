@@ -1,13 +1,18 @@
 #{extends 'admin.html' /}
- 
+
 #{ifErrors}
         <p class="error">
             &{'admin.user.error.header'}
         </p>
 #{/ifErrors}
  
-#{form @save(user.id)}
- 	<p>#{crud.checkField object:'user', name:'isAdmin', value:user?.isAdmin/}</p>
+#{form @create()}
+ 	<p>#{field 'user.isAdmin'}
+		<label>&{'admin.user.isAdmin'}</label> 
+		<input type="checkbox" name="${field.name}" 
+			value="${user?.isAdmin}" class="${field.errorClass}"/>
+		#{errspan 'user.isAdmin' /}
+	#{/field}</p>
 	<p>#{field 'user.login'}
 		<label>&{'admin.user.login'}</label> 
 		<input type="text" name="${field.name}"

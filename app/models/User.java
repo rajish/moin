@@ -36,13 +36,16 @@ public class User extends Model {
 	@Email
 	public String email;
 	@Required
-	@Equals("confirmation")
 	@MinSize(6)
 	public String password;
 	public String salt;
 	public Timestamp createdAt;
 	public Timestamp updatedAt;
-	
+
+	public String toString() {
+	    return "User[" + login + ", " + fullname + "]"; 
+	}
+
 	public User(String login, String name, String email, String password,
 			String repeatPass) throws PasswordsDontMatchException, DuplicateLoginException {
 		User user = find("byLogin", login).first(); 
@@ -55,6 +58,7 @@ public class User extends Model {
 			this.password = encrypt(password);
 		else
 			throw new PasswordsDontMatchException();
+		createdAt = new Timestamp((new Date()).getTime());
 	}
 	
 	public boolean hasPassword(String submittedPassword) {
@@ -69,11 +73,16 @@ public class User extends Model {
 			return null;
 	}
 	
+	public void _save() {
+	    updatedAt = new Timestamp((new Date()).getTime());
+	    super._save();
+	}
+	
 	private void makeSalt() {
 		salt = secureHash((new Date()).toString());
 	}
 
-	private String encrypt(String arg) {
+	public String encrypt(String arg) {
 		if(!isPersistent())
 			makeSalt();
 		return secureHash(salt + "::" + arg);
