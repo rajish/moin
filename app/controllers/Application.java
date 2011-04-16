@@ -1,16 +1,20 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
-import java.util.*;
-
-import models.*;
+import play.mvc.Controller;
 
 public class Application extends Controller {
 
     public static void index() {
-        render();
+        System.out.println("Application.index()");
+        if(session.contains("username")) {
+            render();
+        } else {
+            redirect("/login");
+        }
     }
 
+    public static void userProfile() {
+        System.out.println("Application.userProfile()");
+        render();
+    }
 }

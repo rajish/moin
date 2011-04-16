@@ -8,9 +8,10 @@ import play.data.binding.Binder;
 import play.data.validation.Required;
 import play.exceptions.TemplateNotFoundException;
 import play.i18n.Messages;
+import play.mvc.With;
 import models.User;
 
-
+@With(Secure.class)
 public class Users extends CRUD {
 
     public static void show(Long id) {
@@ -26,6 +27,10 @@ public class Users extends CRUD {
         System.out.println("Users.create(" + user + ")");
         validation.valid(user);
         validation.equals(user.password, confirmation);
+        User duplUser = User.find("byLogin", user.login).first(); 
+        if(duplUser != null) {
+            validation.addError("user.login", Messages.get("admin.user.error.duplicate.login", user.login));
+        }
         if (validation.hasErrors()) {
             params.flash();
             validation.keep();
@@ -33,10 +38,8 @@ public class Users extends CRUD {
             render("@show", user, confirmation);
         }
         user.password = user.encrypt(confirmation);
-        user.updatedAt =  new Timestamp((new Date()).getTime());
-        user.createdAt = user.updatedAt;
         user._save();
-        flash.success(Messages.get("admin.user.created"), user.login);
+        flash.success(Messages.get("admin.user.created", user.login));
         if (params.get("_save") != null) {
             redirect(request.controller + ".list");
         }
@@ -61,7 +64,6 @@ public class Users extends CRUD {
             render("@show", user, confirmation);
         }
         user.password = user.encrypt(confirmation);
-        user.updatedAt =  new Timestamp((new Date()).getTime());
         user._save();
         flash.success(Messages.get("admin.user.saved", user.login));
         if (params.get("_save") != null) {

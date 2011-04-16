@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <tr>
+            <th>login</th>
+            <th>isAdmin</th>
+        </tr>
+    </thead>
+    %{ User.objects.eachWithIndex() { user, k -> }%
+    <tr class="${k % 2 ? 'even' : 'odd'}">
+        <td>${user.login}</td>
+        <td>${user.isAdmin ? 'yes' : 'no'} </td>
+    </tr>
+    %{ } }%
+</table>

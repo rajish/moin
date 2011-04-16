@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -15,7 +16,7 @@ import play.db.jpa.Model;
 
 
 @Entity
-public class User extends Model {
+public class User extends TemporalModel {
 	public class DuplicateLoginException extends Exception {
 
 		public DuplicateLoginException() {
@@ -39,11 +40,9 @@ public class User extends Model {
 	@MinSize(6)
 	public String password;
 	public String salt;
-	public Timestamp createdAt;
-	public Timestamp updatedAt;
 
 	public String toString() {
-	    return "User[" + login + ", " + fullname + "]"; 
+	    return "User[" + login + ", " + fullname + ", " + salt + "]"; 
 	}
 
 	public User(String login, String name, String email, String password,
@@ -58,24 +57,20 @@ public class User extends Model {
 			this.password = encrypt(password);
 		else
 			throw new PasswordsDontMatchException();
-		createdAt = new Timestamp((new Date()).getTime());
 	}
 	
 	public boolean hasPassword(String submittedPassword) {
-		return password.equals(encrypt(submittedPassword));
+	    System.out.println("User.hasPassword()\n" + password + "\n" + encrypt(submittedPassword) );
+	    return password.equals(encrypt(submittedPassword));
 	}
 
 	public static User connect(String login, String password) {
 		User user = find("byLogin", login).first();
+		System.out.println("User.connect() user = " + user);
 		if (user != null && user.hasPassword(password))
 			return user;
 		else
 			return null;
-	}
-	
-	public void _save() {
-	    updatedAt = new Timestamp((new Date()).getTime());
-	    super._save();
 	}
 	
 	private void makeSalt() {

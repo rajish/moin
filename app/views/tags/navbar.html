@@ -1,8 +1,15 @@
 <span class="navbar">
-<ul id="tools">
-    <li>
-        <a href="@{Admin.index()}">Log in to write something</a>
-    </li>
-</ul>
+#{if session.username}
+	<ul id="tools">
+	    <li>&{'Welcome'} <a href="@{Application.userProfile()}">${session.username}</a></li>
+	    <li>#{a @Secure.logout()} &{'logout'} #{/a}</li>
+	    <li>#{a @Application.index()} &{'app.index'} #{/a}</li>
+	    <li>
+	        #{secure.check 'admin'}
+	            <a href="@{Admin.index()}">&{'admin.navbar.index'}</a>
+	        #{/secure.check}
+	    </li>
+	</ul>
+#{/if}
 </span>
 

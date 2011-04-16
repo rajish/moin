@@ -1,46 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>&{'admin.title.administration'}</title>		
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        #{get 'moreStyles' /}	
-        <link rel="stylesheet" type="text/css" media="screen" 
-                href="@{'/public/stylesheets/main.css'}" />
-        <link rel="shortcut icon" type="image/png" 
-                href="@{'/public/images/favicon.png'}" />
-        <script src="@{'/public/javascripts/jquery-1.5.1.min.js'}"></script>
-        <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>
-    </head>
-    <body id="admin">
-        
-        <div id="header">
-            <div id="logo">
-                &{'app.title'} <span>&{'admin.header.administration'}</span>
-            </div>
-            <ul id="tools">
-                <li>
-                    <a href="@{Secure.logout()}">&{'admin.tools.logout'}</a>
-                </li>
-            </ul>
-        </div>
-        
-        <div id="main">
-          <ul id="adminMenu">
-        <li class="${request.controller == 'Admin' ? 'selected' : ''}">
-            <a href="@{Admin.index()}">&{'admin.navbar.index'}</a>
-        </li>
-        #{secure.check 'admin'}
-            <li class="${request.controller == 'Users' ? 'selected' : ''}">
-                <a href="@{Users.list()}">&{'admin.navbar.users'}</a>
-            </li>
-        #{/secure.check}
-    </ul>
-            #{doLayout /} 
-        </div>
-        
-        <p id="footer">
-            &{'admin.footer'}
-        </p>
-        
-    </body>
-</html>
+#{extends 'main.html'/}
+#{set title}&{'admin.title.administration'}#{/set}
+#{set bodyId:"admin" /}		
+<div id="header">
+	<div id="logo">
+	   &{'app.title'} <span>&{'admin.header.administration'}</span>
+	</div>
+</div>
+	
+<div id="main">
+	#{secure.check 'admin'}
+    <ul id="adminMenu">
+		<li class="${request.controller == 'Admin' ? 'selected' : ''}">
+		   <a href="@{Admin.index()}">&{'admin.navbar.index'}</a>
+		</li>
+			<li class="${request.controller == 'Users' ? 'selected' : ''}">
+			  <a href="@{Users.list()}">&{'admin.navbar.users'}</a>
+			</li>
+	</ul>
+
+	#{doLayout /} 
+	#{/secure.check}
+	#{secure.check 'user'}
+	   <ul id="adminMenu">
+	       <li><a href="@{Secure.logout()}">&{'admin.unprivileged.user', session.username}</a></li>
+	   </ul>
+	#{/secure.check}
+</div>        

@@ -1,28 +1,38 @@
-
-app.title=MoIn
-
+# Saved by @messages on Fri Apr 15 00:06:51 CEST 2011
+Welcome=Welcome, 
+admin.footer=
+admin.header.administration=administration
 admin.navbar.index=Admin Home
 admin.navbar.users=Users
 admin.title.administration=Administration
-admin.header.administration=administration
 admin.tools.logout=Log out
-admin.footer=
-
+admin.unprivileged.user=User %s has no administrative privileges.
+admin.user.confirm=Confirm password\:
+admin.user.created=User '%s' successfully created
+admin.user.email=E-mail address\:
+admin.user.error.duplicate.login=the login %s already exists
 admin.user.error.header=Please correct the following errors.
-admin.user.isAdmin=Admin role:
-admin.user.login=User login:
-admin.user.fullname=Full user name:
-admin.user.email=E-mail address:
-admin.user.password=Password:
-admin.user.confirm=Confirm password:
+admin.user.fullname=Full user name\:
+admin.user.isAdmin=Admin role\:
+admin.user.login=User login\:
+admin.user.password=Password\:
 admin.user.save=Save changes
-
+admin.user.saved=Changes successfully saved
 admin.users.thead.delete=Del
+app.index=Start page
+app.title=MoIn
+createdAt=Created
+crud.add=Add &{%s}
+crud.hasErrors=Please correct errors
+crud.list.title=&{%s}
+delete=Delete
+email=E-mail
+fullname=Full Name
 isAdmin=Adm
 login=Nick
-fullname=Full Name
-email=E-mail
 password=Password
 salt=Salt
-createdAt=Created
 updatedAt=Updated
+user.delete.error=User delete error
+user.delete.success=User successfully deleted
+user.profile=%s's profile

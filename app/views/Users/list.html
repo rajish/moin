@@ -8,13 +8,14 @@
 	</div>
 
 	<div id="crudListTable">
-		#{crud.table fields:['admin.users.thead.delete', 'isAdmin', 'login', 'fullname', 'email', 'createdAt', 'updatedAt']}
-			#{crud.custom 'admin.users.thead.delete'}
+       %{head_names=['admin.users.thead.delete', 'isAdmin', 'login', 'fullname', 'email', 'createdAt', 'updatedAt']}%
+	   #{crud.table fields:head_names}
+			 #{crud.custom 'admin.users.thead.delete'}
 				#{a @delete(object.id)}&{'delete'}#{/a}
-			#{/crud.custom}
-			#{crud.custom 'login'}
+			 #{/crud.custom}
+			 #{crud.custom 'login'}
 				#{a @show(object.id)}${object.login}#{/a}
-			#{/crud.custom}			
+			 #{/crud.custom}
 		#{/crud.table}
 	</div>
 	

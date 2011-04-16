@@ -7,12 +7,7 @@
 #{/ifErrors}
  
 #{form @create()}
- 	<p>#{field 'user.isAdmin'}
-		<label>&{'admin.user.isAdmin'}</label> 
-		<input type="checkbox" name="${field.name}" 
-			value="${user?.isAdmin}" class="${field.errorClass}"/>
-		#{errspan 'user.isAdmin' /}
-	#{/field}</p>
+ 	<p>#{crud.checkField object:'user', name:'isAdmin', value:user?.isAdmin/}</p>
 	<p>#{field 'user.login'}
 		<label>&{'admin.user.login'}</label> 
 		<input type="text" name="${field.name}"
@@ -42,5 +37,5 @@
 		<input type="password" name="${field.name}" class="${field.errorClass}"/>
 		#{errspan 'confirmation' /}
 	#{/field}</p>
-	<p><input type="submit" value="&{'admin.user.save'}"></p>
+	<p><input type="submit" name="user.create" value="&{'admin.user.save'}"></p>
 #{/form}

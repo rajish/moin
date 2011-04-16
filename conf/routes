@@ -16,5 +16,8 @@ GET     /admin/?                                Admin.index
 # Import Secure routes
 *       /                                       module:secure
 
+# Import @messages module
+*       /                                       module:messages
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
