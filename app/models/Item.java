@@ -11,13 +11,11 @@ import play.db.jpa.Model;
 
 @Entity
 @IdClass(play.db.jpa.Model.class)
-public class Item extends Model {
+public class Item extends TemporalModel {
     public String code;
     public String name;
     public String description;
     public DecimalFormat price;
     public String vatRateStage;
     public Currency currency;
-    public Timestamp createdAt;
-    public Timestamp updatedAt;
 }
