@@ -1,16 +1,16 @@
 #{extends 'main.html' /}
 
-<h2>View Invoice</h2>
+<h2>View SoldItem</h2>
 
 <div class="entity">
 
   
 	<div class="row">
 		<span class="elem">
-			number:
+			item:
 		</span>
 		<span class="value">
-      ${entity.number}
+      ${entity.item}
 		</span>
 	</div>
   
@@ -18,10 +18,10 @@
   
 	<div class="row">
 		<span class="elem">
-			date:
+			invoice:
 		</span>
 		<span class="value">
-      ${entity.date}
+      ${entity.invoice}
 		</span>
 	</div>
   
@@ -29,10 +29,10 @@
   
 	<div class="row">
 		<span class="elem">
-			customer:
+			vatRate:
 		</span>
 		<span class="value">
-      ${entity.customer}
+      ${entity.vatRate}
 		</span>
 	</div>
   
@@ -40,10 +40,10 @@
   
 	<div class="row">
 		<span class="elem">
-			isPaid:
+			rebate:
 		</span>
 		<span class="value">
-      ${entity.isPaid}
+      ${entity.rebate}
 		</span>
 	</div>
   
@@ -51,10 +51,10 @@
   
 	<div class="row">
 		<span class="elem">
-			paymentPeriod:
+			quantity:
 		</span>
 		<span class="value">
-      ${entity.paymentPeriod}
+      ${entity.quantity}
 		</span>
 	</div>
   
@@ -105,5 +105,5 @@
 
 </div>
 
-<a href="@{Invoices.index}">Back</a>
+<a href="@{SoldItems.index}">Back</a>
 

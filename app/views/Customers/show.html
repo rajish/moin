@@ -1,16 +1,16 @@
 #{extends 'main.html' /}
 
-<h2>View Invoice</h2>
+<h2>View Customer</h2>
 
 <div class="entity">
 
   
 	<div class="row">
 		<span class="elem">
-			number:
+			name:
 		</span>
 		<span class="value">
-      ${entity.number}
+      ${entity.name}
 		</span>
 	</div>
   
@@ -18,10 +18,10 @@
   
 	<div class="row">
 		<span class="elem">
-			date:
+			address:
 		</span>
 		<span class="value">
-      ${entity.date}
+      ${entity.address}
 		</span>
 	</div>
   
@@ -29,10 +29,10 @@
   
 	<div class="row">
 		<span class="elem">
-			customer:
+			nip:
 		</span>
 		<span class="value">
-      ${entity.customer}
+      ${entity.nip}
 		</span>
 	</div>
   
@@ -40,10 +40,10 @@
   
 	<div class="row">
 		<span class="elem">
-			isPaid:
+			phone:
 		</span>
 		<span class="value">
-      ${entity.isPaid}
+      ${entity.phone}
 		</span>
 	</div>
   
@@ -51,10 +51,21 @@
   
 	<div class="row">
 		<span class="elem">
-			paymentPeriod:
+			email:
 		</span>
 		<span class="value">
-      ${entity.paymentPeriod}
+      ${entity.email}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			web:
+		</span>
+		<span class="value">
+      ${entity.web}
 		</span>
 	</div>
   
@@ -105,5 +116,5 @@
 
 </div>
 
-<a href="@{Invoices.index}">Back</a>
+<a href="@{Customers.index}">Back</a>
 

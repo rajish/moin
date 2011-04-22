@@ -1,16 +1,16 @@
 #{extends 'main.html' /}
 
-<h2>View Invoice</h2>
+<h2>View Item</h2>
 
 <div class="entity">
 
   
 	<div class="row">
 		<span class="elem">
-			number:
+			code:
 		</span>
 		<span class="value">
-      ${entity.number}
+      ${entity.code}
 		</span>
 	</div>
   
@@ -18,10 +18,10 @@
   
 	<div class="row">
 		<span class="elem">
-			date:
+			name:
 		</span>
 		<span class="value">
-      ${entity.date}
+      ${entity.name}
 		</span>
 	</div>
   
@@ -29,10 +29,10 @@
   
 	<div class="row">
 		<span class="elem">
-			customer:
+			description:
 		</span>
 		<span class="value">
-      ${entity.customer}
+      ${entity.description}
 		</span>
 	</div>
   
@@ -40,10 +40,10 @@
   
 	<div class="row">
 		<span class="elem">
-			isPaid:
+			price:
 		</span>
 		<span class="value">
-      ${entity.isPaid}
+      ${entity.price}
 		</span>
 	</div>
   
@@ -51,10 +51,10 @@
   
 	<div class="row">
 		<span class="elem">
-			paymentPeriod:
+			vatRateStage:
 		</span>
 		<span class="value">
-      ${entity.paymentPeriod}
+      ${entity.vatRateStage}
 		</span>
 	</div>
   
@@ -62,32 +62,10 @@
   
 	<div class="row">
 		<span class="elem">
-			notes:
+			currency:
 		</span>
 		<span class="value">
-      ${entity.notes}
-		</span>
-	</div>
-  
-
-  
-	<div class="row">
-		<span class="elem">
-			createdAt:
-		</span>
-		<span class="value">
-      ${entity.createdAt}
-		</span>
-	</div>
-  
-
-  
-	<div class="row">
-		<span class="elem">
-			updatedAt:
-		</span>
-		<span class="value">
-      ${entity.updatedAt}
+      ${entity.currency}
 		</span>
 	</div>
   
@@ -105,5 +83,5 @@
 
 </div>
 
-<a href="@{Invoices.index}">Back</a>
+<a href="@{Items.index}">Back</a>
 

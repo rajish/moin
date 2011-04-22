@@ -1,41 +1,87 @@
-#{extends 'admin.html' /}
- 
-#{ifErrors}
-        <p class="error">
-            &{'admin.user.error.header'}
-        </p>
-#{/ifErrors}
- 
-#{form @save(user.id)}
- 	<p>#{crud.checkField object:'user', name:'isAdmin', value:user?.isAdmin/}</p>
-	<p>#{field 'user.login'}
-		<label>&{'admin.user.login'}</label> 
-		<input type="text" name="${field.name}"
-		 	value="${user?.login}" class="${field.errorClass}"/>
-		 #{errspan 'user.login' /}
-	#{/field}</p>
-	<p>#{field 'user.fullname'}
-		<label>&{'admin.user.fullname'}</label>
-		<input type="text" name="${field.name}"
-		 	value="${user?.fullname}" class="${field.errorClass}"/>
-		 #{errspan 'user.fullname' /}
-	#{/field}</p>
-	<p>#{field 'user.email'}
-		<label>&{'admin.user.email'}</label>
-		<input type="text" name="${field.name}"
-		 	value="${user?.email}" class="${field.errorClass}"/>
-		 #{errspan 'user.email' /}
-	#{/field}</p>
-	<p>#{field 'user.password'}
-		<label>&{'admin.user.password'}</label>
-		<input type="password" name="${field.name}"
-		 	value="" class="${field.errorClass}"/>
-		 #{errspan 'user.password' /}
-	#{/field}</p>
-	<p>#{field 'confirmation'}
-		<label>&{'admin.user.confirm'}</label>
-		<input type="password" name="${field.name}" class="${field.errorClass}"/>
-		#{errspan 'confirmation' /}
-	#{/field}</p>
-	<p><input type="submit" value="&{'admin.user.save'}"></p>
-#{/form}
+#{extends 'main.html' /}
+
+<h2>View User</h2>
+
+<div class="entity">
+
+  
+	<div class="row">
+		<span class="elem">
+			isAdmin:
+		</span>
+		<span class="value">
+      ${entity.isAdmin}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			login:
+		</span>
+		<span class="value">
+      ${entity.login}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			fullname:
+		</span>
+		<span class="value">
+      ${entity.fullname}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			email:
+		</span>
+		<span class="value">
+      ${entity.email}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			password:
+		</span>
+		<span class="value">
+      ${entity.password}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			salt:
+		</span>
+		<span class="value">
+      ${entity.salt}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+  
+
+</div>
+
+<a href="@{Users.index}">Back</a>
+

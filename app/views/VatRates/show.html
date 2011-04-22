@@ -1,16 +1,16 @@
 #{extends 'main.html' /}
 
-<h2>View Invoice</h2>
+<h2>View VatRate</h2>
 
 <div class="entity">
 
   
 	<div class="row">
 		<span class="elem">
-			number:
+			rate:
 		</span>
 		<span class="value">
-      ${entity.number}
+      ${entity.rate}
 		</span>
 	</div>
   
@@ -18,10 +18,10 @@
   
 	<div class="row">
 		<span class="elem">
-			date:
+			validFrom:
 		</span>
 		<span class="value">
-      ${entity.date}
+      ${entity.validFrom}
 		</span>
 	</div>
   
@@ -29,10 +29,10 @@
   
 	<div class="row">
 		<span class="elem">
-			customer:
+			vatStage:
 		</span>
 		<span class="value">
-      ${entity.customer}
+      ${entity.vatStage}
 		</span>
 	</div>
   
@@ -40,32 +40,10 @@
   
 	<div class="row">
 		<span class="elem">
-			isPaid:
+			description:
 		</span>
 		<span class="value">
-      ${entity.isPaid}
-		</span>
-	</div>
-  
-
-  
-	<div class="row">
-		<span class="elem">
-			paymentPeriod:
-		</span>
-		<span class="value">
-      ${entity.paymentPeriod}
-		</span>
-	</div>
-  
-
-  
-	<div class="row">
-		<span class="elem">
-			notes:
-		</span>
-		<span class="value">
-      ${entity.notes}
+      ${entity.description}
 		</span>
 	</div>
   
@@ -105,5 +83,5 @@
 
 </div>
 
-<a href="@{Invoices.index}">Back</a>
+<a href="@{VatRates.index}">Back</a>
 

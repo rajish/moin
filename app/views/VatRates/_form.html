@@ -1,0 +1,149 @@
+
+ <div class="row">
+  <div class="label">Rate</div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="text" name="entity.rate" value="${entity?.rate}"/>
+    
+  </div>
+  <span class="error">${errors.forKey('entity.rate')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">Valid From</div>
+  <div class="field">
+    
+    
+      <script type="text/javascript">
+        $(function() {
+          $("#validFrom").datepicker({ dateFormat: 'yy-mm-dd' } );
+        });
+      </script>
+      <!-- TODO: date format needs to come from application.conf -->
+      <input id="validFrom" type="text" name="entity.validFrom" 
+        value="${entity?.validFrom?.format('yyyy-MM-dd')}"
+        size="10" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <span class="error">${errors.forKey('entity.validFrom')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">Vat Stage</div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="text" name="entity.vatStage" value="${entity?.vatStage}"/>
+    
+  </div>
+  <span class="error">${errors.forKey('entity.vatStage')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">Description</div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="text" name="entity.description" value="${entity?.description}"/>
+    
+  </div>
+  <span class="error">${errors.forKey('entity.description')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">Created At</div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="text" name="entity.createdAt" value="${entity?.createdAt}"/>
+    
+  </div>
+  <span class="error">${errors.forKey('entity.createdAt')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">Updated At</div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="text" name="entity.updatedAt" value="${entity?.updatedAt}"/>
+    
+  </div>
+  <span class="error">${errors.forKey('entity.updatedAt')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label"></div>
+  <div class="field">
+    
+    
+    
+    
+    
+    
+    
+    
+      <input type="hidden" name="entity.id" value="${entity?.id}"/>
+    
+    
+    
+  </div>
+  <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+
+

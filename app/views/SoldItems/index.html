@@ -1,30 +1,30 @@
 #{extends 'main.html' /}
 
-<h2>Invoices</h2>
+<h2>SoldItems</h2>
 
-<table class="entity Invoice">
+<table class="entity SoldItem">
 	<thead>
 		<tr>
 			<th><!-- actions --></th>
 			
 	        
-				<th>Number</th>
+				<th>Item</th>
 	        
 			
 	        
-				<th>Date</th>
+				<th>Invoice</th>
 	        
 			
 	        
-				<th>Customer</th>
+				<th>Vat Rate</th>
 	        
 			
 	        
-				<th>Is Paid</th>
+				<th>Rebate</th>
 	        
 			
 	        
-				<th>Payment Period</th>
+				<th>Quantity</th>
 	        
 			
 	        
@@ -49,29 +49,29 @@
 	#{list items:entities, as:'entity'}
 		<tr>
 			<td>
-				<a href="@{Invoices.show(entity.id)}">Show</a>&nbsp;
-				<a href="@{Invoices.edit(entity.id)}">Edit</a>&nbsp;
-				<a href="@{Invoices.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>
+				<a href="@{SoldItems.show(entity.id)}">Show</a>&nbsp;
+				<a href="@{SoldItems.edit(entity.id)}">Edit</a>&nbsp;
+				<a href="@{SoldItems.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>
 			</td>
 			
         
-					<td>${entity.number}</td>
+					<td>${entity.item}</td>
         
 			
         
-					<td>${entity.date}</td>
+					<td>${entity.invoice}</td>
         
 			
         
-					<td>${entity.customer}</td>
+					<td>${entity.vatRate}</td>
         
 			
         
-					<td>${entity.isPaid}</td>
+					<td>${entity.rebate}</td>
         
 			
         
-					<td>${entity.paymentPeriod}</td>
+					<td>${entity.quantity}</td>
         
 			
         
@@ -95,4 +95,4 @@
 	</tbody>
 </table>
 
-<a href="@{Invoices.create}">Create</a>
+<a href="@{SoldItems.create}">Create</a>
