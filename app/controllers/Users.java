@@ -1,13 +1,14 @@
 package controllers;
 
 import java.util.List;
+
 import models.User;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.i18n.Messages;
+import play.mvc.Controller;
+import play.mvc.With;
 
-
+@With(Secure.class)
 public class Users extends Controller {
 	public static void index() {
 		List<User> entities = models.User.all().fetch();

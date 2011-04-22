@@ -13,8 +13,9 @@ GET     /public/                                staticDir:public
 *      /admin           			   			module:crud
 GET     /admin/?                                Admin.index
 
-# Inventory mappings
-GET     /items                                  Items.index
+# Controllers mappings
+*       /items                                  Items.index
+*       /customers                              Customers.index
 
 # Import Secure routes
 *       /                                       module:secure

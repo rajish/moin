@@ -1,13 +1,14 @@
 package controllers;
 
 import java.util.List;
+
 import models.Invoice;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.i18n.Messages;
+import play.mvc.Controller;
+import play.mvc.With;
 
-
+@With(Secure.class)
 public class Invoices extends Controller {
 	public static void index() {
 		List<Invoice> entities = models.Invoice.all().fetch();
