@@ -6,3 +6,8 @@
 /messages-1.0
 *~
 /modules
+.classpath
+.project
+.settings
+cobertura.ser
+/bin
