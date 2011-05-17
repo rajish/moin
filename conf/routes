@@ -16,6 +16,9 @@ GET     /admin/?                                Admin.index
 # Controllers mappings
 *       /items                                  Items.index
 *       /customers                              Customers.index
+*       /vats                                   VatRates.index
+*       /curr                                   Currencies.index
+*       /invoices                               Invoices.index
 
 # Import Secure routes
 *       /                                       module:secure

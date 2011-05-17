@@ -1,21 +1,50 @@
 package models;
 
-import java.sql.Timestamp;
-import java.text.DecimalFormat;
-import java.util.Currency;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
-import play.db.jpa.Model;
+import play.data.validation.Required;
 
 @Entity
-@IdClass(play.db.jpa.Model.class)
 public class Item extends TemporalModel {
+    @Required
     public String code;
+    @Required
     public String name;
     public String description;
-    public DecimalFormat price;
+    @Required
+    private BigDecimal price;
+    @Required
     public String vatRateStage;
+    @Required
+    @ManyToOne
     public Currency currency;
+    
+    public String toString(){
+        return "Item {"
+            + super.toString()
+            + "code: " + code + ", "
+            + "name: " + name + ", "
+            + "description: " + description + ", "
+            + "price: " + getPrice() + ", "
+            + "vatRate: " + vatRateStage + ", "
+            + "currency: " + currency
+            + "}";
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the price
+     */
+    public BigDecimal getPrice() {
+        return price;
+    }
 }
