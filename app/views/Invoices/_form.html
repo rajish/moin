@@ -1,29 +1,16 @@
 
  <div class="row">
-  <div class="label">Number</div>
+  <div class="label">&{'invoice.number'}</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.number" value="${entity?.number}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.number')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Date</div>
+  <div class="label">&{'invoice.date'}</div>
   <div class="field">
-    
-    
       <script type="text/javascript">
         $(function() {
           $("#date").datepicker({ dateFormat: 'yy-mm-dd' } );
@@ -33,35 +20,17 @@
       <input id="date" type="text" name="entity.date" 
         value="${entity?.date?.format('yyyy-MM-dd')}"
         size="10" />
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.date')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Customer</div>
+  <div class="label">&{'invoice.customer'}</div>
   <div class="field">
-    
-    
-    
-    
-      
-      
         <select name="entity.customer.id">
-              
                       <option value="">(None)</option>              
-              
         %{ models.Customer.all().fetch().sort{ it.toString() }.each() { }%
-          
           %{
             selected = false;
             if (entity?.customer?.id == it.id) {
@@ -71,116 +40,53 @@
           <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
         %{ } }%
         </select>
-      
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.customer')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Is Paid</div>
+  <div class="label">&{'invoice.isPaid'}</div>
   <div class="field">
-    
       <input type="checkbox" name="entity.isPaid"
         ${entity?.isPaid ? 'checked':''}
       />
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.isPaid')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Payment Period</div>
+  <div class="label">&{'invoice.paymentPeriod'}</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.paymentPeriod" value="${entity?.paymentPeriod}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.paymentPeriod')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Notes</div>
+  <div class="label">&{'invoice.notes'}</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
       <textarea name="entity.notes" rows="10" cols="40">${entity?.notes}</textarea>
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.notes')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Created At</div>
+  <div class="label">&{'invoice.createdAt'}</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.createdAt" value="${entity?.createdAt}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.createdAt')}</span>
 </div>
 
 
  <div class="row">
-  <div class="label">Updated At</div>
+  <div class="label">&{'invoice.updatedAt'}</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.updatedAt" value="${entity?.updatedAt}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.updatedAt')}</span>
 </div>
@@ -189,20 +95,7 @@
  <div class="row">
   <div class="label"></div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="hidden" name="entity.id" value="${entity?.id}"/>
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.id')}</span>
 </div>
-
-

@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set 'title'}
+    &{'Currencies'}
+#{/set}
+
+<h2>&{'Currencies'}</h2>
+
+<table class="entity Currency">
+    <thead>
+        <tr>
+            <th><!-- actions --></th>
+            <th>&{'currency.symbol'}</th>
+            <th>&{'currency.name'}</th>
+        </tr>
+    </thead>
+    <tbody>
+    #{paginate.list items:entities, as:'entity'}
+        <tr>
+            <td> #{sedIcons entity /} </td>
+            <td>${entity.symbol}</td>
+            <td>${entity.name}</td>
+        </tr>
+    #{/paginate.list}
+    </tbody>
+</table>
+<a href="@{Currencies.create}">&{'Create'}</a>

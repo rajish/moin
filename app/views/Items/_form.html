@@ -34,7 +34,7 @@
 <div class="row">
   <div class="label">Vat Rate Stage</div>
   <div class="field">
-      <input type="text" name="entity.vatRateStage" value="${entity?.vatRateStage}"/>
+      <input id="vatRate" type="text" name="entity.vatRateStage" value="${entity?.vatRateStage}"/>
   </div>
   <span class="error">${errors.forKey('entity.vatRateStage')}</span>
 </div>
@@ -42,11 +42,16 @@
 <div class="row">
   <div class="label">Currency</div>
   <div class="field">
-      <input type="text" name="entity.currency" value="${entity?.currency}"/>
+  *{
+      <input id="currency" type="text" name="entity.currency" value="${entity?.currency}"/>
+      <input type="hidden" id="currency_id" name="entity.currency.id" value="${entity?.currency?.id}">
+   }*
+        #{bulkDrops.xToOneDropdown ent:entity, field:entity.currency, list:currencies, dropId:'currency'/}
   </div>
   <span class="error">${errors.forKey('entity.currency')}</span>
 </div>
 
+#{if entity?.id }
 <div class="row">
   <div class="label"></div>
   <div class="field">
@@ -54,3 +59,44 @@
   </div>
   <span class="error">${errors.forKey('entity.id')}</span>
 </div>
+#{/if}
+
+<style>
+	.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		/* add padding to account for vertical scrollbar */
+		padding-right: 20px;
+	}
+	/* IE 6 doesn't support max-height
+	 * we use height instead, but this forces the menu to always be this tall
+	 */
+	* html .ui-autocomplete {
+		height: 100px;
+	}
+</style>
+
+<script>
+	$(function() {
+*{		var availableCurrencies = [
+			%{for (curr in currencies) { }%
+			    "${curr.symbol}",
+			%{}}%
+		];
+		$( "#currency" ).autocomplete({
+			source: availableCurrencies
+		});
+}*
+		
+		var availableVats = [
+		  %{for (vat in vatRates) { }%
+		      "${vat.vatStage}",
+		  %{}}%
+		];
+		$( "#vatRate" ).autocomplete({
+		    source: availableVats
+		});
+	});
+</script>

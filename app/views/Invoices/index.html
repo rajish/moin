@@ -6,90 +6,30 @@
 	<thead>
 		<tr>
 			<th><!-- actions --></th>
-			
-	        
-				<th>Number</th>
-	        
-			
-	        
-				<th>Date</th>
-	        
-			
-	        
-				<th>Customer</th>
-	        
-			
-	        
-				<th>Is Paid</th>
-	        
-			
-	        
-				<th>Payment Period</th>
-	        
-			
-	        
-				<th>Notes</th>
-	        
-			
-	        
-				<th>Created At</th>
-	        
-			
-	        
-				<th>Updated At</th>
-	        
-			
-	        
-				<th>Id</th>
-	        
-			
+			<th>&{'invoice.number'}</th>
+			<th>&{'invoice.date'}</th>
+			<th>&{'invoice.customer'}</th>
+			<th>&{'invoice.isPaid'}</th>
+			<th>&{'invoice.paymentPeriod'}</th>
+			<th>&{'invoice.notes'}</th>
+			<th>&{'invoice.createdAt'}</th>
+			<th>&{'invoice.updatedAt'}</th>
+			<th>&{'invoice.id'}</th>
 		</tr>
 	</thead>
 	<tbody>
 	#{list items:entities, as:'entity'}
 		<tr>
-			<td>
-				<a href="@{Invoices.show(entity.id)}">Show</a>&nbsp;
-				<a href="@{Invoices.edit(entity.id)}">Edit</a>&nbsp;
-				<a href="@{Invoices.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>
-			</td>
-			
-        
-					<td>${entity.number}</td>
-        
-			
-        
-					<td>${entity.date}</td>
-        
-			
-        
-					<td>${entity.customer}</td>
-        
-			
-        
-					<td>${entity.isPaid}</td>
-        
-			
-        
-					<td>${entity.paymentPeriod}</td>
-        
-			
-        
-					<td>${entity.notes}</td>
-        
-			
-        
-					<td>${entity.createdAt}</td>
-        
-			
-        
-					<td>${entity.updatedAt}</td>
-        
-			
-        
-					<td>${entity.id}</td>
-        
-			
+			<td>#{sedicons entity /}</td>
+			<td>${entity.number}</td>
+			<td>${entity.date}</td>
+			<td>${entity.customer}</td>
+			<td>${entity.isPaid}</td>
+			<td>${entity.paymentPeriod}</td>
+			<td>${entity.notes}</td>
+			<td>${entity.createdAt}</td>
+			<td>${entity.updatedAt}</td>
+			<td>${entity.id}</td>
 		</tr>
 	#{/list}
 	</tbody>

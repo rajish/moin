@@ -1,0 +1,40 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Check inventory page'}
+    clearSession()
+    open('/')
+    type('username', 'root')
+    type('password', 'zaq12wsx')
+    clickAndWait('signin')
+    clickAndWait(link=&{'inventory.index'})
+    assertTextPresent(&{'admin.navbar.index'})
+    assertNotTitle('Application error')
+#{/selenium}
+
+#{selenium 'Create a single inventory item'}
+    clickAndWait(link=&{'Create'})
+    assertNotTitle('Application error')
+    type('entity.code', '123')
+    type('entity.name', 'Ołówek')
+    type('entity.description', 'Ołówek z gumką HB')
+    type('entity.price', '11.34')
+    type('vatRate', 'A')
+    click('entity_currency')
+    select('entity_currency', index=2)
+    clickAndWait('submit')
+    assertNotTitle('Application error')
+    assertNotBodyText(&{'scaffold.validation'})
+    assertTextPresent('Ołówek z gumką HB')
+#{/selenium}
+
+#{selenium 'Edit a inventory item'}
+    clickAndWait(//img[@alt='Edit'])
+    assertNotTitle('Application error')
+    type('entity.description', 'Ołówek HB z gumką')
+    select('entity_currency', index=1)
+    clickAndWait('submit')
+    assertNotTitle('Application error')
+    assertNotBodyText(&{'scaffold.validation'})
+    assertNotBodyText('Ołówek z gumką HB')
+    assertTextPresent('Ołówek HB z gumką')
+#{/selenium}
