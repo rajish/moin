@@ -1,4 +1,9 @@
-# Saved by @messages on Fri Apr 15 00:06:51 CEST 2011
+# Saved by @messages on Tue May 17 00:25:25 CEST 2011
+Cancel=Cancel
+Create=Create
+Currencies=Currencies
+Save=Save
+User=User
 Welcome=Welcome, 
 admin.footer=
 admin.header.administration=administration
@@ -25,13 +30,24 @@ createdAt=Created
 crud.add=Add &{%s}
 crud.hasErrors=Please correct errors
 crud.list.title=&{%s}
+currency.create=Create currency
+currency.name=Currency name
+currency.symbol=Currency symbol
+currency.update=Update currency
 delete=Delete
 email=E-mail
 fullname=Full Name
+inventory.index=Inventory
+invoice.paymentPeriod=Payment due in
+invoice.updatedAt=Invoice modified
 isAdmin=Adm
 login=Nick
+logout=Log out
 password=Password
 salt=Salt
+scaffold.created=New record created
+scaffold.updated=Record data updated
+scaffold.validation=Please correct the following mistakes
 updatedAt=Updated
 user.delete.error=User delete error
 user.delete.success=User successfully deleted
