@@ -42,4 +42,11 @@ public class TemporalModel extends Model {
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+	
+	public String toString() {
+	    return 
+	        "id: " + id + ", "
+            + "created: " + getCreatedAt() + ", "
+            + "updated: " + getUpdatedAt() + ", ";
+	}
 }
