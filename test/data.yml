@@ -25,3 +25,18 @@ User(example):
     password: 59cc45604762e01d48c5afd37fcb550596d02865a78d9bc2fd37d35900c63e5e74e712bf8391299cf41edfe49d5bcd4245e85900a6f8a2761ee04079b0c1ac23
     salt: f873baa38da8bab8eafb220935af697f3367f61841505bcb11756c3d65bd6a39504d63c6ba3656b3c79b9c1f92de5b6f8d71064d06dcb50cfa8f1ba7a6256feb
 
+Currency(PLN):
+    symbol: PLN
+    name: polski złoty
+
+Currency(EUR):
+    symbol: EUR
+    name: Euro
+    
+VatRate(A):
+    rate: 23
+    validFrom: 2011-01-01
+    vatStage: A
+    description: 23%
+    
+    

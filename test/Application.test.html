@@ -10,17 +10,19 @@
 #{/selenium}
 
 #{selenium 'Check login root'}
-    clickAndWait(link=&{'admin.navbar.index'})
     type('username', 'root')
     type('password', 'zaq12wsx')
     clickAndWait('signin')
-    assertTextPresent(&{'app.title'})
-    assertTextPresent(&{'admin.header.administration'})
+    *{ assertTextPresent(&{'app.title'}) }*
+    assertTextPresent(&{'admin.navbar.index'})
+    assertNotTitle('Application error')
 #{/selenium}
 
 #{selenium 'Create a superuser account'}
-    clickAndWait(link=&{'Users'})
+    clickAndWait(link=&{'admin.navbar.index'})
+    assertNotTitle('Application error')
     clickAndWait(link=&{'crud.add', 'User'})
+    assertNotTitle('Application error')
     click('user.isAdmin')
     type('user.login', 'test')
     type('user.fullname', 'Test Test')
@@ -28,23 +30,27 @@
     type('user.password', 'zaq12wsx')
     type('confirmation', 'zaq12wsx')
     clickAndWait('user.create')
+    assertNotTitle('Application error')
     assertChecked('user.isAdmin')
     assertTextPresent(&{'admin.user.created', 'test'})
 #{/selenium}
 
 #{selenium 'Log in with newly created user'}
     clickAndWait(link=&{'admin.tools.logout'})
-    clickAndWait(link=&{'admin.navbar.index'})
+    assertNotTitle('Application error')
     type('username', 'test')
     type('password', 'zaq12wsx')
     clickAndWait('signin')
+    assertNotTitle('Application error')
     assertTextPresent(&{'app.title'})
     assertTextPresent(&{'admin.header.administration'})
 #{/selenium}
 
 #{selenium 'Create a duplicate login account'}
-    clickAndWait(link=&{'Users'})
+    clickAndWait(link=&{'admin.navbar.index'})
+    assertNotTitle('Application error')
     clickAndWait(link=&{'crud.add', 'User'})
+    assertNotTitle('Application error')
     click('user.isAdmin')
     type('user.login', 'test')
     type('user.fullname', 'Test Test')
@@ -52,6 +58,7 @@
     type('user.password', 'zaq12wsx')
     type('confirmation', 'zaq12wsx')
     clickAndWait('user.create')
+    assertNotTitle('Application error')
     assertTextPresent(&{'admin.user.error.duplicate.login', 'test'})
 #{/selenium}
 
