@@ -1,12 +1,12 @@
 #{extends 'main.html' /}
 
-<h2>Create Invoice</h2>
+<h2>&{'Create Invoice'}</h2>
 
 <div class="entity">
 #{form @Invoices.save(), id:'createForm'}
 	#{include 'Invoices/_form.html' /}
-	<input type="submit" name="submit" value="Save" />
+	<input type="submit" name="submit" value="&{'Save'}" />
 #{/form}
 </div>
 
-<a href="@{Invoices.index}">Cancel</a>
+<a href="@{Invoices.index}">&{'Cancel'}</a>

@@ -1,9 +1,14 @@
-# Saved by @messages on Wed May 18 23:57:43 CEST 2011
+# Saved by @messages on Fri May 20 00:58:28 CEST 2011
+Back=Wstecz
 Cancel=Anuluj
 Create=Utwórz
+Create\ Invoice=Utwórz fakturę
 Currencies=Waluty
+Edit\ Invoice=Edytuj fakturę
+Invoices=Faktury
 Save=Zapisz
 User=Użytkownik
+View\ Invoice=Wyświetl fakturę
 Welcome=Witaj,
 admin.footer=
 admin.header.administration=administracja

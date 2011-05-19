@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 
-<h2>Invoices</h2>
+<h2>&{'Invoices'}</h2>
 
 <table class="entity Invoice">
 	<thead>
@@ -22,17 +22,17 @@
 		<tr>
 			<td>#{sedicons entity /}</td>
 			<td>${entity.number}</td>
-			<td>${entity.date}</td>
+			<td>${entity.date.format('yyyy-MM-dd')}</td>
 			<td>${entity.customer}</td>
 			<td>${entity.isPaid}</td>
 			<td>${entity.paymentPeriod}</td>
 			<td>${entity.notes}</td>
-			<td>${entity.createdAt}</td>
-			<td>${entity.updatedAt}</td>
+			<td>${entity.createdAt.format('yyyy-MM-dd HH:mm')}</td>
+			<td>${entity.updatedAt.format('yyyy-MM-dd HH:mm')}</td>
 			<td>${entity.id}</td>
 		</tr>
 	#{/list}
 	</tbody>
 </table>
 
-<a href="@{Invoices.create}">Create</a>
+<a href="@{Invoices.create}">&{'Create'}</a>

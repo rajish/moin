@@ -73,24 +73,22 @@
   <span class="error">${errors.forKey('entity.notes')}</span>
 </div>
 
-
+#{if entity?.createdAt}
  <div class="row">
   <div class="label">&{'invoice.createdAt'}</div>
-  <div class="field">
-      <input type="text" name="entity.createdAt" value="${entity?.createdAt}"/>
-  </div>
-  <span class="error">${errors.forKey('entity.createdAt')}</span>
+  <span class="value">
+      ${entity?.createdAt?.format('yyyy-MM-dd HH:mm')}
+  </span>
 </div>
 
 
  <div class="row">
   <div class="label">&{'invoice.updatedAt'}</div>
-  <div class="field">
-      <input type="text" name="entity.updatedAt" value="${entity?.updatedAt}"/>
-  </div>
-  <span class="error">${errors.forKey('entity.updatedAt')}</span>
+  <span class="value">
+      ${entity?.updatedAt?.format('yyyy-MM-dd HH:mm')}
+  </span>
 </div>
-
+#{/if}
 
  <div class="row">
   <div class="label"></div>
