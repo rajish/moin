@@ -1,24 +1,22 @@
-# Saved by @messages on Wed May 18 23:37:43 CEST 2011
+# Saved by @messages on Sun May 22 14:38:07 CEST 2011
 Cancel=Cancel
 Create=Create
 Currencies=Currencies
+Fullname=Full name
 Save=Save
 User=User
 Welcome=Welcome, 
 admin.footer=
-admin.header.administration=administration
 admin.navbar.index=Admin Home
 admin.navbar.users=Users
 admin.title.administration=Administration
 admin.unprivileged.user=User %s has no administrative privileges.
-admin.user.confirm=Confirm password\:
 admin.user.email=E-mail address\:
 admin.user.error.duplicate.login=the login %s already exists
 admin.user.error.header=Please correct the following errors.
 admin.user.fullname=Full user name\:
 admin.user.login=User login\:
 admin.user.password=Password\:
-admin.user.save=Save changes
 app.index=Start page
 app.title=MoIn
 crud.add=Add &{%s}
@@ -42,4 +40,6 @@ logout=Log out
 scaffold.created=New record created
 scaffold.updated=Record data updated
 scaffold.validation=Please correct the following mistakes
+secure.title=Sign in
+user.add=Add user
 user.profile=%s's profile

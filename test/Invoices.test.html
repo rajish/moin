@@ -1,0 +1,13 @@
+#{fixture delete:'all', load:'data.yml' /}
+#{fixture load:'inventory.yml' /}
+
+#{selenium 'Log in and check the invoices list page'}
+    clearSession()
+    open('/')
+    type('username', 'senior')
+    type('password', 'zaq12wsx')
+    clickAndWait('signin')
+    assertNotBodyText(&{'admin.navbar.index'})
+    assertNotTitle('Application error')
+    assertTextPresent(&{'Invoices'})
+#{/selenium}

@@ -7,4 +7,12 @@ admin.user.error.header
 admin.user.fullname
 admin.user.login
 admin.user.password
+app.title
 delete
+secure.error
+secure.logout
+secure.password
+secure.remember
+secure.signin
+secure.title
+secure.username

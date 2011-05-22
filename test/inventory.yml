@@ -1,10 +1,11 @@
+    
 Item(1):
     code: 123
     name: Ołówek HB
     description: Ołówek HB z gumką
     price: 11.83
     vatRateStage: A
-    currency: 1
+    currency: PLN
     
 Item(2):
     code: 124
@@ -12,7 +13,7 @@ Item(2):
     description: Pióro na naboje
     price: 23.11
     vatRateStage: A
-    currency: 1
+    currency: PLN
 
 Item(3):
     code: 126
@@ -20,7 +21,7 @@ Item(3):
     description: Zeszyt w kratkę 60 kartek
     price: 5.60
     vatRateStage: A
-    currency: 2
+    currency: EUR
 
 Item(4):
     code: 127
@@ -28,7 +29,7 @@ Item(4):
     description: Zeszyt w linie 60 kartek
     price: 5.60
     vatRateStage: A
-    currency: 2
+    currency: EUR
 
 Item(5):
     code: 131
@@ -36,6 +37,5 @@ Item(5):
     description: Blok techniczny 20 kartek
     price: 4.00
     vatRateStage: B
-    currency: 1
-
+    currency: PLN
 

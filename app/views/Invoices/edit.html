@@ -1,6 +1,7 @@
 #{extends 'main.html' /}
-
-<h2>&{'Edit Invoice'}</h2>
+#{set 'title'}
+    &{'Edit Invoice'}
+#{/set}
 
 <div class="entity">
 #{form @Invoices.update(), id:'createForm'}

@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
-
-<h2>&{'Create Invoice'}</h2>
-
+#{set 'title'}
+    &{'Create Invoice'}
+#{/set}
 <div class="entity">
 #{form @Invoices.save(), id:'createForm'}
 	#{include 'Invoices/_form.html' /}
