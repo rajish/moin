@@ -11,3 +11,4 @@
 .settings
 cobertura.ser
 /bin
+.emacs.desktop*
