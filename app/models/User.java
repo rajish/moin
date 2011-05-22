@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -16,6 +18,10 @@ import play.db.jpa.Model;
 
 
 @Entity
+@Table( name="User",
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"id", "login"})
+)
 public class User extends TemporalModel {
 	public class DuplicateLoginException extends Exception {
 
@@ -75,6 +81,12 @@ public class User extends TemporalModel {
 	
 	private void makeSalt() {
 		salt = secureHash((new Date()).toString());
+	}
+
+	@PrePersist
+	public void encryptPassword() {
+	    String pass = password;
+	    password = encrypt(pass);
 	}
 
 	public String encrypt(String arg) {

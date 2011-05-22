@@ -20,6 +20,7 @@ GET     /admin/?                                Admin.index
 *       /vats                                   VatRates.index
 *       /curr                                   Currencies.index
 *       /invoices                               Invoices.index
+*       /users                                  Users.index
 
 # Import Secure routes
 *       /                                       module:secure

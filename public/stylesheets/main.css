@@ -179,7 +179,7 @@ form input, form textarea {
 }
 
 form label {
-    display: block;
+    // display: block;
     font-weight: bold;
     font-size: 90%;
     color: #aaa;

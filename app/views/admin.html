@@ -1,11 +1,6 @@
 #{extends 'main.html'/}
-#{set title}&{'admin.title.administration'}#{/set}
+#{set 'title'}&{'admin.title.administration'}#{/set}
 #{set bodyId:"admin" /}		
-<div id="header">
-	<div id="logo">
-	   &{'app.title'} <span>&{'admin.header.administration'}</span>
-	</div>
-</div>
 	
 <div id="main">
 	#{secure.check 'admin'}
@@ -14,7 +9,7 @@
 		   <a href="@{Admin.index()}">&{'admin.navbar.index'}</a>
 		</li>
 			<li class="${request.controller == 'Users' ? 'selected' : ''}">
-			  <a href="@{Users.list()}">&{'admin.navbar.users'}</a>
+			  <a href="@{Users.index}">&{'admin.navbar.users'}</a>
 			</li>
 	</ul>
 

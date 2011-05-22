@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>#{get 'title' /}</title>
+        <title>&{'app.title'} :: #{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery-ui.css'}">
@@ -14,6 +14,12 @@
     </head>
     <body id="#{get 'bodyId' /}">
     	#{navbar /}
+    	<div id="header">
+        	<div id="logo">
+	           &{'app.title'}.<span>#{get 'title' /}</span>
+	       </div>
+        </div>
+
         #{if flash.error}
 	        <p class="fError">
 	            <strong>${flash.error}</strong>
