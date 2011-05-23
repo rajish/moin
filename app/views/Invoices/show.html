@@ -1,3 +1,106 @@
-#{extends 'CRUD/show.html' /}
-#{set title:'MoIn - Invoices' /}
+#{extends 'main.html' /}
+#{set 'title'}
+    &{'View Invoice'}
+#{/set}
+
+<div class="entity">
+	<div class="row">
+		<span class="elem">
+			number:
+		</span>
+		<span class="value">
+      ${entity.number}
+		</span>
+	</div>
+
+	<div class="row">
+		<span class="elem">
+			date:
+		</span>
+		<span class="value">
+      ${entity.date}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			customer:
+		</span>
+		<span class="value">
+      ${entity.customer}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			isPaid:
+		</span>
+		<span class="value">
+      ${entity.isPaid}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			paymentPeriod:
+		</span>
+		<span class="value">
+      ${entity.paymentPeriod}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			notes:
+		</span>
+		<span class="value">
+      ${entity.notes}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			createdAt:
+		</span>
+		<span class="value">
+      ${entity.createdAt}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			updatedAt:
+		</span>
+		<span class="value">
+      ${entity.updatedAt}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+  
+
+</div>
+
+<a href="@{Invoices.index}">&{'Back'}</a>
 

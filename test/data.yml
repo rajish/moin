@@ -6,22 +6,34 @@ User(root):
     login: root
     fullname: Square Root
     email: root@dupa.org
-    password: 3adda559a5815a59afb678c56153fe2ad11fa1f5f5e639b4c196de56259637d74b1e76174ee1017b8d9ffa6495d6a9bdb32f9baf987f24822651a869fc2aa5da
-    salt: 1fd41746c7df44803ba5d186a628b81114792b5b3c60d25eb29da076eb9a5a9b1382a2d48831610279495d72127988b7653ff60aad898ad78c369d1c3bb3133c
+    password: zaq12wsx
 
 User(senior):
     isAdmin: false
     login: senior
     fullname: Senior Frog
     email: senior@carlos-o-brian.com
-    password:
-    salt:
+    password: zaq12wsx
+
 
 User(example):
     isAdmin: false
     login: exus
     fullname: Example User
     email: user@example.com
-    password: 59cc45604762e01d48c5afd37fcb550596d02865a78d9bc2fd37d35900c63e5e74e712bf8391299cf41edfe49d5bcd4245e85900a6f8a2761ee04079b0c1ac23
-    salt: f873baa38da8bab8eafb220935af697f3367f61841505bcb11756c3d65bd6a39504d63c6ba3656b3c79b9c1f92de5b6f8d71064d06dcb50cfa8f1ba7a6256feb
+    password: zaq12wsx
 
+
+Currency(PLN):
+    symbol: PLN
+    name: polski złoty
+
+Currency(EUR):
+    symbol: EUR
+    name: Euro
+    
+VatRate(A):
+    rate: 23
+    validFrom: 2011-01-01
+    vatStage: A
+    description: 23%

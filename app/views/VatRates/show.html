@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+
+<h2>View VatRate</h2>
+
+<div class="entity">
+
+  
+	<div class="row">
+		<span class="elem">
+			rate:
+		</span>
+		<span class="value">
+      ${entity.rate}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			validFrom:
+		</span>
+		<span class="value">
+      ${entity.validFrom}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			vatStage:
+		</span>
+		<span class="value">
+      ${entity.vatStage}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			description:
+		</span>
+		<span class="value">
+      ${entity.description}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			createdAt:
+		</span>
+		<span class="value">
+      ${entity.createdAt}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			updatedAt:
+		</span>
+		<span class="value">
+      ${entity.updatedAt}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+  
+
+</div>
+
+<a href="@{VatRates.index}">Back</a>
+

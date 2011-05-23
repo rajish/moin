@@ -10,48 +10,58 @@
 #{/selenium}
 
 #{selenium 'Check login root'}
-    clickAndWait(link=&{'admin.navbar.index'})
     type('username', 'root')
     type('password', 'zaq12wsx')
     clickAndWait('signin')
-    assertTextPresent(&{'app.title'})
-    assertTextPresent(&{'admin.header.administration'})
+    *{ assertTextPresent(&{'app.title'}) }*
+    assertTextPresent(&{'admin.navbar.index'})
+    assertNotTitle('Application error')
 #{/selenium}
 
 #{selenium 'Create a superuser account'}
+    clickAndWait(link=&{'admin.navbar.index'})
+    assertNotTitle('Application error')
     clickAndWait(link=&{'Users'})
-    clickAndWait(link=&{'crud.add', 'User'})
-    click('user.isAdmin')
-    type('user.login', 'test')
-    type('user.fullname', 'Test Test')
-    type('user.email', 'test@example.com')
-    type('user.password', 'zaq12wsx')
+    assertNotTitle('Application error')
+    clickAndWait(link=&{'user.add'})
+    assertNotTitle('Application error')
+    click('entity.isAdmin')
+    type('entity.login', 'test')
+    type('entity.fullname', 'Test Test')
+    type('entity.email', 'test@example.com')
+    type('entity.password', 'zaq12wsx')
     type('confirmation', 'zaq12wsx')
-    clickAndWait('user.create')
-    assertChecked('user.isAdmin')
+    clickAndWait('submit')
+    assertNotTitle('Application error')
     assertTextPresent(&{'admin.user.created', 'test'})
 #{/selenium}
 
 #{selenium 'Log in with newly created user'}
-    clickAndWait(link=&{'admin.tools.logout'})
-    clickAndWait(link=&{'admin.navbar.index'})
+    clickAndWait(link=&{'logout'})
+    assertNotTitle('Application error')
     type('username', 'test')
     type('password', 'zaq12wsx')
     clickAndWait('signin')
+    assertNotTitle('Application error')
     assertTextPresent(&{'app.title'})
     assertTextPresent(&{'admin.header.administration'})
 #{/selenium}
 
 #{selenium 'Create a duplicate login account'}
+    clickAndWait(link=&{'admin.navbar.index'})
+    assertNotTitle('Application error')
     clickAndWait(link=&{'Users'})
-    clickAndWait(link=&{'crud.add', 'User'})
-    click('user.isAdmin')
-    type('user.login', 'test')
-    type('user.fullname', 'Test Test')
-    type('user.email', 'test@example.com')
-    type('user.password', 'zaq12wsx')
+    assertNotTitle('Application error')
+    clickAndWait(link=&{'user.add'})
+    assertNotTitle('Application error')
+    click('entity.isAdmin')
+    type('entity.login', 'test')
+    type('entity.fullname', 'Test Test')
+    type('entity.email', 'test@example.com')
+    type('entity.password', 'zaq12wsx')
     type('confirmation', 'zaq12wsx')
-    clickAndWait('user.create')
+    clickAndWait('submit')
+    assertNotTitle('Application error')
     assertTextPresent(&{'admin.user.error.duplicate.login', 'test'})
 #{/selenium}
 

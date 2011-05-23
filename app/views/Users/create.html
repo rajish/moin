@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set 'title'}
+    &{'Create User'}
+#{/set}
+
+<div class="entity">
+#{form @Users.save(), id:'createForm'}
+	#{include 'Users/_form.html' /}
+	<input type="submit" name="submit" value="&{'Save'}" />
+#{/form}
+</div>
+
+<a href="@{Users.index}">&{'Cancel'}</a>

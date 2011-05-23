@@ -1,30 +1,36 @@
 #{extends 'main.html' /}
-#{set 'title'}
-    &{'inventory.index.title'}
-#{/set}
 
-<div id="crudList" class="${type.name}">
-	<h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+<h2>Items</h2>
 
-	<div id="crudListSearch">
-		#{crud.search /}
-	</div>
+<table class="entity Item">
+	<thead>
+		<tr>
+			<th><!-- actions --></th>
+			<th>Code</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Vat Rate Stage</th>
+			<th>Currency</th>
+			<th>Id</th>
+		</tr>
+	</thead>
+	<tbody>
+	#{list items:entities, as:'entity'}
+		<tr>
+			<td>
+			     #{sedIcons entity /}
+			</td>
+			<td>${entity.code}</td>
+			<td>${entity.name}</td>
+			<td>${entity.description}</td>
+			<td>${entity.price}</td>
+			<td>${entity.vatRateStage}</td>
+			<td>${entity.currency.symbol}</td>
+			<td>${entity.id}</td>
+		</tr>
+	#{/list}
+	</tbody>
+</table>
 
-	<div id="crudListTable">
-       %{head_names=['inventory.thead.delete', 'code', 'name', 'description', 'price', 'vatRateStage', 'currency', 'createdAt', 'updatedAt' ]}%
-	   #{crud.table fields:head_names}
-			 #{crud.custom 'inventory.thead.delete'}
-				#{a @delete(object.id)}&{'delete'}#{/a}
-			 #{/crud.custom}
-		#{/crud.table}
-	</div>
-	
-	<div id="crudListPagination">
-		#{crud.pagination /}
-	</div>
-	
-	<p id="crudListAdd">
-		<a href="@{blank()}">&{'crud.add', type.modelName}</a>
-	</p>
-
-</div>
+<a href="@{Items.create}">&{'Create'}</a>

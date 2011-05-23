@@ -2,15 +2,15 @@ package models;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
-import play.db.jpa.Model;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Invoice extends Model {
+public class Invoice extends TemporalModel{
     public String number;
     public Date date;
    
@@ -21,6 +21,7 @@ public class Invoice extends Model {
     
     @Lob
     public String notes;
-    public Timestamp createdAt;
-    public Timestamp updatedAt;
+    
+    @OneToMany
+    public List<SoldItem> items;
 }

@@ -1,2 +1,39 @@
-#{extends 'CRUD/layout.html' /}
+#{extends 'main.html' /}
+#{set 'title'}
+    &{'Invoices'}
+#{/set}
 
+<table class="entity Invoice">
+	<thead>
+		<tr>
+			<th><!-- actions --></th>
+			<th>&{'invoice.number'}</th>
+			<th>&{'invoice.date'}</th>
+			<th>&{'invoice.customer'}</th>
+			<th>&{'invoice.isPaid'}</th>
+			<th>&{'invoice.paymentPeriod'}</th>
+			<th>&{'invoice.notes'}</th>
+			<th>&{'invoice.createdAt'}</th>
+			<th>&{'invoice.updatedAt'}</th>
+			<th>&{'invoice.id'}</th>
+		</tr>
+	</thead>
+	<tbody>
+	#{list items:entities, as:'entity'}
+		<tr>
+			<td>#{sedicons entity /}</td>
+			<td>${entity.number}</td>
+			<td>${entity.date.format('yyyy-MM-dd')}</td>
+			<td>${entity.customer}</td>
+			<td>${entity.isPaid}</td>
+			<td>${entity.paymentPeriod}</td>
+			<td>${entity.notes}</td>
+			<td>${entity.createdAt.format('yyyy-MM-dd HH:mm')}</td>
+			<td>${entity.updatedAt.format('yyyy-MM-dd HH:mm')}</td>
+			<td>${entity.id}</td>
+		</tr>
+	#{/list}
+	</tbody>
+</table>
+
+<a href="@{Invoices.create}">&{'Create'}</a>

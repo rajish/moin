@@ -1,0 +1,102 @@
+
+<div class="row">
+  <div class="label">Code</div>
+  <div class="field">
+    <input type="text" name="entity.code" value="${entity?.code}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.code')}</span>
+</div>
+
+<div class="row">
+  <div class="label">Name</div>
+  <div class="field">
+      <input type="text" name="entity.name" value="${entity?.name}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.name')}</span>
+</div>
+
+<div class="row">
+  <div class="label">Description</div>
+  <div class="field">
+      <input type="text" name="entity.description" value="${entity?.description}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.description')}</span>
+</div>
+
+<div class="row">
+  <div class="label">Price</div>
+  <div class="field">
+      <input type="text" name="entity.price" value="${entity?.price}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.price')}</span>
+</div>
+
+<div class="row">
+  <div class="label">Vat Rate Stage</div>
+  <div class="field">
+      <input id="vatRate" type="text" name="entity.vatRateStage" value="${entity?.vatRateStage}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.vatRateStage')}</span>
+</div>
+
+<div class="row">
+  <div class="label">Currency</div>
+  <div class="field">
+  *{
+      <input id="currency" type="text" name="entity.currency" value="${entity?.currency}"/>
+      <input type="hidden" id="currency_id" name="entity.currency.id" value="${entity?.currency?.id}">
+   }*
+        #{bulkDrops.xToOneDropdown ent:entity, field:entity.currency, list:currencies, dropId:'currency'/}
+  </div>
+  <span class="error">${errors.forKey('entity.currency')}</span>
+</div>
+
+#{if entity?.id }
+<div class="row">
+  <div class="label"></div>
+  <div class="field">
+      <input type="hidden" name="entity.id" value="${entity?.id}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+#{/if}
+
+<style>
+	.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		/* add padding to account for vertical scrollbar */
+		padding-right: 20px;
+	}
+	/* IE 6 doesn't support max-height
+	 * we use height instead, but this forces the menu to always be this tall
+	 */
+	* html .ui-autocomplete {
+		height: 100px;
+	}
+</style>
+
+<script>
+	$(function() {
+*{		var availableCurrencies = [
+			%{for (curr in currencies) { }%
+			    "${curr.symbol}",
+			%{}}%
+		];
+		$( "#currency" ).autocomplete({
+			source: availableCurrencies
+		});
+}*
+		
+		var availableVats = [
+		  %{for (vat in vatRates) { }%
+		      "${vat.vatStage}",
+		  %{}}%
+		];
+		$( "#vatRate" ).autocomplete({
+		    source: availableVats
+		});
+	});
+</script>

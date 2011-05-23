@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set 'title'}
+    &{'Edit Invoice'}
+#{/set}
+
+<div class="entity">
+#{form @Invoices.update(), id:'createForm'}
+	#{include 'Invoices/_form.html' /}
+	<input type="submit" name="submit" value="&{'Save'}" />
+#{/form}
+</div>
+
+<a href="@{Invoices.index}">&{'Cancel'}</a>

@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+
+<h2>View Item</h2>
+
+<div class="entity">
+
+  
+	<div class="row">
+		<span class="elem">
+			code:
+		</span>
+		<span class="value">
+      ${entity.code}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			name:
+		</span>
+		<span class="value">
+      ${entity.name}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			description:
+		</span>
+		<span class="value">
+      ${entity.description}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			price:
+		</span>
+		<span class="value">
+      ${entity.price}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			vatRateStage:
+		</span>
+		<span class="value">
+      ${entity.vatRateStage}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			currency:
+		</span>
+		<span class="value">
+      ${entity.currency}
+		</span>
+	</div>
+  
+
+  
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+  
+
+</div>
+
+<a href="@{Items.index}">Back</a>
+

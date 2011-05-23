@@ -13,12 +13,12 @@ public class Security extends Secure.Security {
 
     static void onDisconnected() {
         System.out.println("Security.onDisconnected()");
-        Application.index();
+        Invoices.index();
     }
 
     static void onAuthenticated() {
         System.out.println("Security.onAuthenticated()");
-        Application.index();
+        Invoices.index();
     }
     
     static boolean check(String profile) {

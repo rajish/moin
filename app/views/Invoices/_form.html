@@ -1,0 +1,177 @@
+#{set 'moreScripts'}
+	<script src="@{'/public/javascripts/jquery.editinplace.js'}" type="text/javascript" charset="utf-8"></script>
+#{/set}
+
+
+ <div class="row">
+  <div class="label">&{'invoice.number'}</div>
+  <div class="field">
+      <input type="text" name="entity.number" value="${entity?.number}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.number')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.date'}</div>
+  <div class="field">
+      <script type="text/javascript">
+        $(function() {
+          $("#date").datepicker({ dateFormat: 'yy-mm-dd' } );
+        });
+      </script>
+      <!-- TODO: date format needs to come from application.conf -->
+      <input id="date" type="text" name="entity.date" 
+        value="${entity?.date?.format('yyyy-MM-dd')}"
+        size="10" />
+  </div>
+  <span class="error">${errors.forKey('entity.date')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.customer'}</div>
+  <div class="field">
+        <select name="entity.customer.id">
+                      <option value="">(None)</option>              
+        %{ models.Customer.all().fetch().sort{ it.toString() }.each() { }%
+          %{
+            selected = false;
+            if (entity?.customer?.id == it.id) {
+              selected = true
+            }
+          }%
+          <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+        %{ } }%
+        </select>
+  </div>
+  <span class="error">${errors.forKey('entity.customer')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.isPaid'}</div>
+  <div class="field">
+      <input type="checkbox" name="entity.isPaid"
+        ${entity?.isPaid ? 'checked':''}
+      />
+  </div>
+  <span class="error">${errors.forKey('entity.isPaid')}</span>
+</div>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.paymentPeriod'}</div>
+  <div class="field">
+      <input type="text" name="entity.paymentPeriod" value="${entity?.paymentPeriod}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.paymentPeriod')}</span>
+</div>
+
+<table clas="items Invoice">
+    <thead>
+        <tr>
+            <th><!-- actions --></th>
+            <th>&{'invoice.item.description'}</th>
+            <th>&{'invoice.item.price'}</th>
+            <th>&{'invoice.item.rebate'}</th>
+            <th>&{'invoice.item.quantity'}</th>
+            <th>&{'invoice.item.netTotal'}</th>
+            <th>&{'invoice.item.vatRate'}</th>
+            <th>&{'invoice.item.grandTotal'}</th>
+            <th>&{'invoice.item.notes'}</th>
+        </tr>
+    </thead>
+    #{list items:entity.items, as:'item'}
+        <tr>
+            <td>
+                <a href="@{SoldItems.show(item.id)}"><img src="/public/images/simplicio/32x32/file_search.png" alt="&{'Show'}" title="&{'show'}" height="16" /></a>
+				<a href="@{SoldItems.delete(item.id)}" onclick="if (!confirm(&{'invoce.item.confirmDelete'})) return false;">
+					<img src="/public/images/simplicio/32x32/file_delete.png" alt="&{'Delete'}" title="&{'delete'}" height="16" />
+				</a>
+            </td>
+            <td>
+                <div class="editable">${item.item.name}</div>
+                <div class="editable">${item.item.description}</div>
+            </td>
+            <td class="editable">${item.item.price}</td>
+            <td class="editable">${item.rebate}</td>
+            <td class="editable">${item.quantity}</td>
+            <td>%{
+                netTotal = item.item.price * (item.rebate / 100) * item.quantity;
+                 }%
+                 ${netTotal}
+            </td>
+            <td>
+                <select name="item.vatRate">
+                </select>
+            </td>
+            <td>%{
+                    grandTotal = netTotal * item.vatRate.rate;
+                }%
+                ${grandTotal}
+            </td>
+            <td class="editable">${item.notes}</td>
+        </tr>
+    #{/list}
+    <tr>
+    </tr>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+
+    // In place edition
+    $(".editable").editInPlace({
+        //bg_over: 'transparent',
+        callback: function(el, n, o) {
+            var m = /([a-z]+)-(\d+)/.exec(el), data = {}
+            data['item.id'] = m[2]
+            data['item.' + m[1]] = n
+            
+            // Save result
+            $.ajax({
+                url: '@{SoldItems.save()}',
+                type: 'POST',
+                data: data,
+                success: function() {$('#' + el).html(n)},
+                error: function() {$('#' + el).html(o)}
+            })
+            
+            return true
+        }
+    })
+</script>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.notes'}</div>
+  <div class="field">
+      <textarea name="entity.notes" rows="10" cols="40">${entity?.notes}</textarea>
+  </div>
+  <span class="error">${errors.forKey('entity.notes')}</span>
+</div>
+
+#{if entity?.createdAt}
+ <div class="row">
+  <div class="label">&{'invoice.createdAt'}</div>
+  <span class="value">
+      ${entity?.createdAt?.format('yyyy-MM-dd HH:mm')}
+  </span>
+</div>
+
+
+ <div class="row">
+  <div class="label">&{'invoice.updatedAt'}</div>
+  <span class="value">
+      ${entity?.updatedAt?.format('yyyy-MM-dd HH:mm')}
+  </span>
+</div>
+#{/if}
+
+ <div class="row">
+  <div class="label"></div>
+  <div class="field">
+      <input type="hidden" name="entity.id" value="${entity?.id}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.id')}</span>
+</div>

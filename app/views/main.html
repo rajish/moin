@@ -2,17 +2,24 @@
 
 <html>
     <head>
-        <title>#{get 'title' /}</title>
+        <title>&{'app.title'} :: #{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery-ui.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.1.min.js'}"></script>
-        <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>
+        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
+        <script src="@{'/public/javascripts/jquery-ui-1.8.11.custom.min.js'}"></script>
         #{get 'moreScripts' /}
     </head>
     <body id="#{get 'bodyId' /}">
     	#{navbar /}
+    	<div id="header">
+        	<div id="logo">
+	           &{'app.title'}.<span>#{get 'title' /}</span>
+	       </div>
+        </div>
+
         #{if flash.error}
 	        <p class="fError">
 	            <strong>${flash.error}</strong>

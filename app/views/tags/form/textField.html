@@ -1,0 +1,9 @@
+#{field _arg}
+<div class="row">
+    <label class="label" for="${field.id}">&{field.name}</label>
+    <div class="field">
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}" />
+    </div>
+    <span class="error">${field.error}</span>
+</div>
+#{/field}

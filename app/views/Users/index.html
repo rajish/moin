@@ -1,0 +1,32 @@
+#{extends 'admin.html' /}
+#{set 'title'}&{'admin.title.administration'}#{/set}
+#{set bodyId:"admin" /}		
+
+<h2>&{'Users'}</h2>
+
+<table class="entity User">
+	<thead>
+		<tr>
+			<th><!-- actions --></th>
+				<th>&{'Is Admin'}</th>
+				<th>&{'Login'}</th>
+				<th>&{'Fullname'}</th>
+				<th>&{'Email'}</th>
+				<th>&{'Id'}</th>
+		</tr>
+	</thead>
+	<tbody>
+	#{list items:entities, as:'entity'}
+		<tr>
+			<td>#{sedIcons entity/}</td>
+			<td>${entity.isAdmin}</td>
+			<td>${entity.login}</td>
+			<td>${entity.fullname}</td>
+			<td>${entity.email}</td>
+			<td>${entity.id}</td>
+		</tr>
+	#{/list}
+	</tbody>
+</table>
+
+<a href="@{Users.create}">&{'user.add'}</a>
