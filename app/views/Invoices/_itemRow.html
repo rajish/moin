@@ -1,0 +1,55 @@
+<tr class="item-value ${item_parity}">
+		<td>
+	    <a href="@{SoldItems.show(item.id)}"><img src="/public/images/simplicio/32x32/file_search.png" alt="&{'Show'}" title="&{'show'}" height="16" /></a>
+		<a href="@{SoldItems.delete(item.id)}" onclick="if (!confirm(&{'invoce.item.confirmDelete'})) return false;">
+			<img src="/public/images/simplicio/32x32/file_delete.png" alt="&{'Delete'}" title="&{'delete'}" height="16" />
+		</a>
+	</td>
+	
+	*{====== combined name and description ========}*
+	<td>
+	    <div class="editable">${item.item.name}</div>
+	    <div class="editable">${item.item.description}</div>
+	</td>
+	
+	<td class="editable">${item.item.price}</td>
+	
+	<td class="editable">${item.rebate}</td>
+	
+	<td class="editable">${item.quantity}</td>
+	
+	<td>%{
+	    netTotal = item.item.price * (item.rebate / 100) * item.quantity;
+	     }%
+	     ${netTotal}
+	</td>
+	
+	*{======== VAT Rate selector ==========}*
+	<td>
+	    <select name="item.vatRate">
+	        <option value="">&{'(None)'}</option>              
+	        %{ models.VatRate.all().fetch().sort{ it.toString() }.each() { }%
+	          %{
+	            selected = false;
+	            if (item?.vatRate?.id == it.id) {
+	              selected = true
+	            }
+	          }%
+	            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+	        %{ } }%
+	    </select>
+	</td>
+	
+	<td>%{
+	        grandTotal = netTotal * item.vatRate.rate;
+	    }%
+	    ${grandTotal}
+	</td>
+	
+	<td class="editable">${item.notes}</td>
+</tr>
+
+*{editable area - hidden when not selected }*
+
+<tr class="value-edit">
+</tr>

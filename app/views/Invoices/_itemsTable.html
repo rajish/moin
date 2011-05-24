@@ -1,0 +1,21 @@
+<table clas="items Invoice">
+    <thead>
+        <tr>
+            <th><!-- actions --></th>
+            <th>&{'invoice.item.description'}</th>
+            <th>&{'invoice.item.price'}</th>
+            <th>&{'invoice.item.rebate'}</th>
+            <th>&{'invoice.item.quantity'}</th>
+            <th>&{'invoice.item.netTotal'}</th>
+            <th>&{'invoice.item.vatRate'}</th>
+            <th>&{'invoice.item.grandTotal'}</th>
+            <th>&{'invoice.item.notes'}</th>
+        </tr>
+    </thead>
+    #{list items:entity.items, as:'item'}
+        #{include '_itemRow.html' /}
+    #{/list}
+    <tr>
+    </tr>
+</table>
+
