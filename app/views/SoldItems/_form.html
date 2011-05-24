@@ -2,16 +2,8 @@
  <div class="row">
   <div class="label">Item</div>
   <div class="field">
-    
-    
-    
-    
-      
-      
         <select name="entity.item.id">
-              
                       <option value="">(None)</option>              
-              
         %{ models.Item.all().fetch().sort{ it.toString() }.each() { }%
           
           %{
@@ -23,14 +15,6 @@
           <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
         %{ } }%
         </select>
-      
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.item')}</span>
 </div>
@@ -39,16 +23,8 @@
  <div class="row">
   <div class="label">Invoice</div>
   <div class="field">
-    
-    
-    
-    
-      
-      
         <select name="entity.invoice.id">
-              
                       <option value="">(None)</option>              
-              
         %{ models.Invoice.all().fetch().sort{ it.toString() }.each() { }%
           
           %{
@@ -60,14 +36,6 @@
           <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
         %{ } }%
         </select>
-      
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.invoice')}</span>
 </div>
@@ -76,16 +44,8 @@
  <div class="row">
   <div class="label">Vat Rate</div>
   <div class="field">
-    
-    
-    
-    
-      
-      
         <select name="entity.vatRate.id">
-              
                       <option value="">(None)</option>              
-              
         %{ models.VatRate.all().fetch().sort{ it.toString() }.each() { }%
           
           %{
@@ -97,14 +57,6 @@
           <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
         %{ } }%
         </select>
-      
-    
-    
-    
-    
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.vatRate')}</span>
 </div>
@@ -113,18 +65,7 @@
  <div class="row">
   <div class="label">Rebate</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.rebate" value="${entity?.rebate}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.rebate')}</span>
 </div>
@@ -133,18 +74,7 @@
  <div class="row">
   <div class="label">Quantity</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.quantity" value="${entity?.quantity}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.quantity')}</span>
 </div>
@@ -153,78 +83,17 @@
  <div class="row">
   <div class="label">Notes</div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="text" name="entity.notes" value="${entity?.notes}"/>
-    
   </div>
   <span class="error">${errors.forKey('entity.notes')}</span>
 </div>
 
 
- <div class="row">
-  <div class="label">Created At</div>
-  <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      <input type="text" name="entity.createdAt" value="${entity?.createdAt}"/>
-    
-  </div>
-  <span class="error">${errors.forKey('entity.createdAt')}</span>
-</div>
-
-
- <div class="row">
-  <div class="label">Updated At</div>
-  <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      <input type="text" name="entity.updatedAt" value="${entity?.updatedAt}"/>
-    
-  </div>
-  <span class="error">${errors.forKey('entity.updatedAt')}</span>
-</div>
-
 
  <div class="row">
   <div class="label"></div>
   <div class="field">
-    
-    
-    
-    
-    
-    
-    
-    
       <input type="hidden" name="entity.id" value="${entity?.id}"/>
-    
-    
-    
   </div>
   <span class="error">${errors.forKey('entity.id')}</span>
 </div>

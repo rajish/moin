@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Invoice;
+import models.SoldItem;
 import play.data.validation.Valid;
 import play.i18n.Messages;
 import play.mvc.Controller;
@@ -58,4 +59,10 @@ public class Invoices extends Controller {
 		index();
 	}
 
+	public static void saveItem(@Valid SoldItem item) {
+	    if(validation.hasErrors()) {
+	        System.out.println("Invoices.saveItem()" + validation.errorsMap());
+	    }
+	    System.out.println("Invoices.saveItem()" + item);
+	}
 }
