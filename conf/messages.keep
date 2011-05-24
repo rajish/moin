@@ -1,5 +1,8 @@
 Cancel
 Currencies
+Delete
+Edit
+Show
 User
 admin.user.email
 admin.user.error.duplicate.login
@@ -9,6 +12,7 @@ admin.user.login
 admin.user.password
 app.title
 delete
+invoce.item.confirmDelete
 secure.error
 secure.logout
 secure.password

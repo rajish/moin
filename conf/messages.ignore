@@ -1,7 +1,10 @@
+Are you sure you want to delete this record?
 Back
 Confirm Password
 Create Invoice
 Create User
+Delete
+Edit
 Edit Invoice
 Email
 Id
@@ -10,8 +13,10 @@ Is Admin
 Login
 Password
 Salt
+Show
 Users
 View Invoice
+edit
 on
 secure.error
 secure.logout
@@ -19,3 +24,4 @@ secure.password
 secure.remember
 secure.signin
 secure.username
+show

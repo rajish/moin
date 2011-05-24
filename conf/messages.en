@@ -1,4 +1,4 @@
-# Saved by @messages on Sun May 22 14:38:07 CEST 2011
+# Saved by @messages on Mon May 23 22:56:42 CEST 2011
 Cancel=Cancel
 Create=Create
 Currencies=Currencies
@@ -27,11 +27,20 @@ currency.symbol=Currency symbol
 currency.update=Update currency
 delete=Delete
 inventory.index=Inventory
+invoce.item.confirmDelete=Are you sure you want to delete the invoice?
 invoice.createdAt=Invoice created at
 invoice.customer=Customer
 invoice.date=Issue date
 invoice.id=Invoice id
 invoice.isPaid=Is paid
+invoice.item.description=Description
+invoice.item.grandTotal=Gross price
+invoice.item.netTotal=Net price
+invoice.item.notes=Notes
+invoice.item.price=Item price
+invoice.item.quantity=Qty
+invoice.item.rebate=Discount
+invoice.item.vatRate=VAT Rate
 invoice.notes=Notes
 invoice.number=Invoice no.
 invoice.paymentPeriod=Payment due in
