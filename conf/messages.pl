@@ -1,4 +1,4 @@
-# Saved by @messages on Mon May 23 23:06:14 CEST 2011
+# Saved by @messages on Wed May 25 22:26:58 CEST 2011
 (None)=(Wybierz)
 Are\ you\ sure\ you\ want\ to\ delete\ this\ record?=Czy na pewno chcesz usunąć ten rekord?
 Back=Wstecz
@@ -51,6 +51,7 @@ invoice.id=Id faktury
 invoice.isPaid=Zapłacono
 invoice.item.description=Opis
 invoice.item.grandTotal=Cena brutto
+invoice.item.name=Nazwa
 invoice.item.netTotal=Cena netto
 invoice.item.notes=Notatki
 invoice.item.price=Cena jedn.

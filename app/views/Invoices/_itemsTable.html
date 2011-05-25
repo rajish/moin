@@ -13,9 +13,61 @@
         </tr>
     </thead>
     #{list items:entity.items, as:'item'}
-        #{include '_itemRow.html' /}
+        #{include 'Invoices/_itemRow.html' /}
     #{/list}
-    <tr>
+    <tr id="item_new">
+        <td><!-- actions empty --></td>
+        
+        <td>
+            <div class="item">
+                <input class="item_desc" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}"/>
+            </div>
+            <div class="item">
+                <textarea class="item_desc" rows="2" cols="30" name="item.item.description" placeholder="&{'invoice.item.description'}"></textarea>
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <input type="text" size="10" name="item.item.price" />
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <input type="text" size="4" name="item.rebate" />
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <input type="text" size="7" name="item.quantity" />
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <pre class="item-net"><!-- placeholder --></pre>
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <input type="text" size="4" name="item.vatRate" />
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <pre class="item-gross"><!-- placeholder --></pre>
+            </div>
+        </td>
+        
+        <td>
+            <div class="item">
+                <input type="text" name="item.notes" />
+            </div>
+        </td>
     </tr>
 </table>
 

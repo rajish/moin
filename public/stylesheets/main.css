@@ -145,6 +145,14 @@ body {
     padding: 20px;
 }
 
+/** Invoice item editor **/
+.item_desc {
+	width: 250px !important;
+	height: auto;
+	font-family: inherit;
+}
+
+
 /** Form **/
 
 form {
@@ -195,6 +203,7 @@ form label {
     -moz-border-radius: 6px;
     -webkit-box-shadow: 0 2px 0 #4E840B; 
 }
+
 
 /** Pagination **/
 

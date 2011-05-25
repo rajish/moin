@@ -1,4 +1,5 @@
-# Saved by @messages on Mon May 23 22:56:42 CEST 2011
+# Saved by @messages on Wed May 25 22:27:32 CEST 2011
+(None)=(Select)
 Cancel=Cancel
 Create=Create
 Currencies=Currencies
@@ -35,6 +36,7 @@ invoice.id=Invoice id
 invoice.isPaid=Is paid
 invoice.item.description=Description
 invoice.item.grandTotal=Gross price
+invoice.item.name=Name
 invoice.item.netTotal=Net price
 invoice.item.notes=Notes
 invoice.item.price=Item price
