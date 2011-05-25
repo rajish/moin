@@ -1,27 +1,22 @@
 package models;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
 import play.data.validation.Email;
-import play.data.validation.Equals;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
-import play.db.jpa.Model;
 
 
 @Entity
-@Table( name="User",
-        uniqueConstraints=
-            @UniqueConstraint(columnNames={"id", "login"})
-)
 public class User extends TemporalModel {
 	public class DuplicateLoginException extends Exception {
 
@@ -36,15 +31,21 @@ public class User extends TemporalModel {
 	}
 
     public boolean isAdmin;
+    
     @Required
+    @Column(name = "login", nullable = false, unique = true)
 	public String login;
+    
     @Required
 	public String fullname;
+    
 	@Email
 	public String email;
+	
 	@Required
-	@MinSize(6)
+	@MinSize(8)
 	public String password;
+
 	public String salt;
 
 	public String toString() {
@@ -84,6 +85,7 @@ public class User extends TemporalModel {
 	}
 
 	@PrePersist
+	@PreUpdate
 	public void encryptPassword() {
 	    String pass = password;
 	    password = encrypt(pass);
