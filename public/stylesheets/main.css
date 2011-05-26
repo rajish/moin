@@ -145,14 +145,6 @@ body {
     padding: 20px;
 }
 
-/** Invoice item editor **/
-.item_desc {
-	width: 250px !important;
-	height: auto;
-	font-family: inherit;
-}
-
-
 /** Form **/
 
 form {
