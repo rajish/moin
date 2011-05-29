@@ -64,5 +64,6 @@ public class Invoices extends Controller {
 	        System.out.println("Invoices.saveItem()" + validation.errorsMap());
 	    }
 	    System.out.println("Invoices.saveItem()" + item);
+	    render();
 	}
 }
