@@ -1,4 +1,10 @@
-
+*{ 
+   WARNING:
+   This template stronly relies on the assumption that it will
+   viewed in a HTML5 compatible browser.
+ }*
+<div class="entity"> 
+#{form formAction, id:formId}
  <div class="row">
   <div class="label">&{'invoice.number'}</div>
   <div class="field">
@@ -63,15 +69,19 @@
   </div>
   <span class="error">${errors.forKey('entity.paymentPeriod')}</span>
 </div>
+#{/form}
 
 <div class="row">
+*{ The itemsTable is a form itself }*
     #{include 'Invoices/_itemsTable.html' /}
 </div>
+
+*{ The fields below still belong to the 'outer' form }*
 
  <div class="row">
   <div class="label">&{'invoice.notes'}</div>
   <div class="field">
-      <textarea name="entity.notes" rows="10" cols="40">${entity?.notes}</textarea>
+      <textarea name="entity.notes" rows="10" cols="40" form="${formId}">${entity?.notes}</textarea>
   </div>
   <span class="error">${errors.forKey('entity.notes')}</span>
 </div>
@@ -96,7 +106,12 @@
  <div class="row">
   <div class="label"></div>
   <div class="field">
-      <input type="hidden" name="entity.id" value="${entity?.id}"/>
+      <input type="hidden" name="entity.id" value="${entity?.id}" form="${formId}"/>
   </div>
   <span class="error">${errors.forKey('entity.id')}</span>
 </div>
+
+<input type="submit" name="submit" value="&{'Save'}" form="${formId}" />
+</div>
+
+<a href="@{Invoices.index}">&{'Cancel'}</a>

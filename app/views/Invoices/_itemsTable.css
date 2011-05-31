@@ -1,0 +1,44 @@
+/** Invoice item editor **/
+.itemDesc {
+	width: 250px !important;
+	height: auto;
+	font-family: inherit;
+}
+
+#invoiceItemsTable, #newItemTable {
+
+	border-collapse: collapse;
+}
+
+#invoiceItemsTable thead tr {
+	background-color: #F0F0F0;
+}
+
+#invoiceItemsTable td, #invoiceItemsTable th, #newItemTable td {
+	border: thin solid #BBB !important;
+	padding: 4px 2px 2px 4px;
+}
+
+#invoiceItemsTable tr.even {
+	background-color: #E0E0E0;
+}
+
+#invoiceItemsTable tr.odd {
+	background-color: #E0E0E0;
+}
+
+#invoiceItemsTable tr.itemNew td, #newItemTable tr.itemNew td {
+	background-color: #FCFCE0 !important;
+}
+
+#saveItem button {
+    background-image:url('/public/images/34aL/shadow/standart/png/24x24/001_06.png');
+}
+
+#saveItem button:hover {
+    background-image:url('/public/images/34aL/noshadow/standart/png/24x24/001_06.png');
+}
+
+#saveItem button:active {
+    background-image:url('/public/images/34aL/shadow/standart/png/24x24/001_06.png');
+}

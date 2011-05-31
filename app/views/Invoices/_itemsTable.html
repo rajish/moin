@@ -1,76 +1,18 @@
 
 #{set 'moreStyles'}
-<style type="text/css">
-/** Invoice item editor **/
-.itemDesc {
-	width: 250px !important;
-	height: auto;
-	font-family: inherit;
-}
-
-#invoiceItemsTable, #newItemTable {
-
-	border-collapse: collapse;
-}
-
-#invoiceItemsTable thead tr {
-	background-color: #F0F0F0;
-}
-
-#invoiceItemsTable td, #invoiceItemsTable th, #newItemTable td {
-	border: thin solid #BBB !important;
-	padding: 4px 2px 2px 4px;
-}
-
-#invoiceItemsTable tr.even {
-	background-color: #E0E0E0;
-}
-
-#invoiceItemsTable tr.odd {
-	background-color: #E0E0E0;
-}
-
-#invoiceItemsTable tr.itemNew td, #newItemTable tr.itemNew td {
-	background-color: #FCFCE0 !important;
-}
-</style>
+    <style type="text/css">
+	    #{include 'Invoices/_itemsTable.css' /}
+	</style>
 #{/set}
 
 #{set 'moreScripts'}
     <script src="@{'/public/javascripts/sammy-0.6.3.min.js'}"></script>
-*{    <script src="@{'/public/javascripts/Invoices/soldItem.js'}"></script>}*
-<script>
-;(function($) {
-	var app = $.sammy('#invoiceItemsTable', function() {
-		this.debug = true;
-		var form_fields = null;
-		
-		this.get('#/', function(context) {
-			context.log('main');
-		});
-		
-		this.bind('saveItem', function (context) {
-			context.log('saveItem');
-			form_fields = this.params;
-			var action = #{jsAction @saveItem(':item') /};
-			this.partial(action({item: form_fields}));
-		});
-		
-		this.get('#/cancelEdits', function (context) {
-			context.log('cancelEdits');
-		});
-	});
-	
-	$(function(	) {
-		app.run('#/');
-	});
-})(jQuery);
-
-var event = jQuery.Event("saveItem");
-$("#saveItem").click().trigger(event);
-</script>
+	<script>
+    	#{include 'Invoices/soldItem.js' /}
+	</script>
 #{/set}
 
+<form action="#/saveItem" method="post" id="itemsTable">
 <table class="items Invoice" id="invoiceItemsTable">
     <thead>
         <tr>
@@ -92,8 +34,8 @@ $("#saveItem").click().trigger(event);
 
     <tr class="itemNew">
         <td>
-            *{}<a href="#/saveItem">}*<image id="saveItem" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" alt="&{'Save'}" title="&{'Save'}" height="16" >*{}</a>}*
-            *{}<a href="#/cancelEdits">}*<image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16">*{}</a>}*
+            <input type="image" id="saveItem" name="&{'Save'}" title="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png"/>
+            <a href="#/cancelEdits"><image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"></a>
         </td>
         
         <td>
@@ -146,3 +88,4 @@ $("#saveItem").click().trigger(event);
         </td>
     </tr>
 </table>
+</form>
