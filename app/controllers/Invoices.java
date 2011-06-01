@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Invoice;
 import models.SoldItem;
+import play.cache.Cache;
 import play.data.validation.Valid;
 import play.i18n.Messages;
 import play.mvc.Controller;
@@ -21,19 +22,28 @@ public class Invoices extends Controller {
 	}
 
 	public static void show(java.lang.Long id) {
-    Invoice entity = Invoice.findById(id);
+	    Invoice entity = Invoice.findById(id);
 		render(entity);
 	}
 
 	public static void edit(java.lang.Long id) {
-    Invoice entity = Invoice.findById(id);
+	    Invoice entity = Invoice.findById(id);
 		render(entity);
 	}
 
 	public static void delete(java.lang.Long id) {
-    Invoice entity = Invoice.findById(id);
-    entity.delete();
+        Invoice entity = Invoice.findById(id);
+        entity.delete();
 		index();
+	}
+
+	private static void saveNewSoldItems(Invoice entity) {
+	    List<SoldItem> newItems = Cache.get(session.getId() + "-newSoldItems", List.class);
+	    for(SoldItem item : newItems) {
+	        item.invoice = entity;
+	        item.save();
+	    }
+	    Cache.delete(session.getId() + "-newSoldItems");
 	}
 	
 	public static void save(@Valid Invoice entity) {
@@ -41,7 +51,10 @@ public class Invoices extends Controller {
 			flash.error(Messages.get("scaffold.validation"));
 			render("@create", entity);
 		}
-    entity.save();
+		
+		entity.save();
+		saveNewSoldItems(entity);
+
 		flash.success(Messages.get("scaffold.created", "Invoice"));
 		index();
 	}
@@ -51,10 +64,11 @@ public class Invoices extends Controller {
 			flash.error(Messages.get("scaffold.validation"));
 			render("@edit", entity);
 		}
-		
-      		entity = entity.merge();
-		
+      	
+		entity = entity.merge();
 		entity.save();
+		saveNewSoldItems(entity);
+		
 		flash.success(Messages.get("scaffold.updated", "Invoice"));
 		index();
 	}
@@ -63,7 +77,13 @@ public class Invoices extends Controller {
 	    if(validation.hasErrors()) {
 	        System.out.println("Invoices.saveItem()" + validation.errorsMap());
 	    }
+	    List<SoldItem> newItems = Cache.get(session.getId() + "-newSoldItems", List.class);
 	    System.out.println("Invoices.saveItem()" + item);
-	    render();
+	    newItems.add(item);
+	    // This will add the list to cache only for the first time,
+	    Cache.add(session.getId() + "-newSoldItems", newItems);
+	    // and this will replace the list with new contents any other time.
+	    Cache.replace(session.getId() + "-newSoldItems", newItems);
+	    render(newItems);
 	}
 }

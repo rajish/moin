@@ -28,7 +28,11 @@
         </tr>
     </thead>
 
-    #{list items:entity.items, as:'item'}
+    #{list items:entity?.items, as:'item'}
+        #{include 'Invoices/_itemRow.html' /}
+    #{/list}
+
+    #{list items:newItems, as:'item'}
         #{include 'Invoices/_itemRow.html' /}
     #{/list}
 

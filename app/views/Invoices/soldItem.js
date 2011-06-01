@@ -23,7 +23,7 @@
 		app.run('#/');
 	});
 })(jQuery);
-
+/*
 var event = jQuery.Event("saveItem");
 $("#saveItem").click(function(e) {
     //e.stopImmediatePropagation();
@@ -31,3 +31,4 @@ $("#saveItem").click(function(e) {
     log('clicked');
     //return false;
 });
+*/

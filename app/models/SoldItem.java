@@ -19,4 +19,16 @@ public class SoldItem extends TemporalModel {
     public BigDecimal rebate;
     public BigDecimal quantity;
     public String notes;
+    
+    public String toString() {
+        return "SoldItem: {"
+            + "item:" + item + ", "
+            + "invoice:" + invoice + ", "
+            + "vatRate:" + vatRate + ", "
+            + "rebate:" + rebate + ", "
+            + "quantity:" + quantity + ", "
+            + "notes:" + notes
+            + "}"
+            ;
+    }
 }
