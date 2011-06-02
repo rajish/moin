@@ -12,7 +12,9 @@
 	</script>
 #{/set}
 
-<form action="#/saveItem" method="post" id="itemsTable">
+<form action="#/saveItem" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="itemsTable">
+<input type="hidden" name="authenticityToken" value="d04be371857547c9d6bfecc9db58eed931cc9c10">
+
 <table class="items Invoice" id="invoiceItemsTable">
     <thead>
         <tr>
@@ -38,7 +40,8 @@
 
     <tr class="itemNew">
         <td>
-            <input type="image" id="saveItem" name="&{'Save'}" title="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png"/>
+            <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" form="itemsTable"/>
+            <input type="submit"/>
             <a href="#/cancelEdits"><image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"></a>
         </td>
         
