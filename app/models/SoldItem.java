@@ -12,12 +12,19 @@ import play.db.jpa.Model;
 public class SoldItem extends TemporalModel {
     @ManyToOne
     public Item item;
+    
     @ManyToOne
     public Invoice invoice;
+    
+    public BigDecimal retailPrice;
+
     @ManyToOne
     public VatRate vatRate;
+    
     public BigDecimal rebate;
+    
     public BigDecimal quantity;
+    
     public String notes;
     
     public String toString() {
