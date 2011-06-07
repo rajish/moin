@@ -6,7 +6,7 @@
 #{/set}
 
 #{set 'moreScripts'}
-    <script src="@{'/public/javascripts/sammy-0.6.3.min.js'}"></script>
+    <script src="@{'/public/javascripts/sammy.js'}"></script>
 	<script>
     	#{include 'Invoices/soldItem.js' /}
 	</script>
@@ -15,7 +15,10 @@
 <form action="#/saveItem" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="itemsTable">
 <input type="hidden" name="authenticityToken" value="d04be371857547c9d6bfecc9db58eed931cc9c10">
 
-<table class="items Invoice" id="invoiceItemsTable">
+*{ The blessed form definition below complains something about problem with casting String to Router.ActionDefinition }*
+*{#{form '#/saveItem', id:'itemsTable'}*
+
+<table class="items Invoice" >
     <thead>
         <tr>
             <th><!-- actions --></th>
@@ -41,7 +44,6 @@
     <tr class="itemNew">
         <td>
             <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" form="itemsTable"/>
-            <input type="submit"/>
             <a href="#/cancelEdits"><image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"></a>
         </td>
         
@@ -56,7 +58,7 @@
         
         <td>
             <div class="item">
-                <input type="text" size="10" name="item.item.price" placeholder="&{'invoice.item.price'}" />
+                <input type="text" size="10" name="item.retailPrice" placeholder="&{'invoice.item.price'}" />
             </div>
         </td>
         
@@ -95,4 +97,5 @@
         </td>
     </tr>
 </table>
+*{#{/form}*
 </form>
