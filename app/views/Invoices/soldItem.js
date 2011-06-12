@@ -5,7 +5,7 @@
 		var form_fields = null;
 		
 		this.swap = function(content) {
-			this.$element.hide('slow').html(content).show('slow');
+			this.$element().hide('slow').html(content).show('slow');
 		}
 		
 		this.get('#/', function(context) {
@@ -13,23 +13,12 @@
 		});
 		
 		this.post('#/saveItem', function (context) {
-			var item_def = new Sammy.Object();
-			context.log('saveItem - params = ' + this.params);
-			context.log('saveItem - form_fields = {');
-			//for ( var item in this.params.keys()) {
-			var items = this.params.keys(true);
-			for ( var i = 0; i < items.length; i++) {
-				var item = items[i];
-				context.log('item: ' + item);
-				if(item.match(/^item\./)) {
-					item_def[':'+ item] = this.params[item];
-				}
-			}
-			context.log('}');
-			context.log('item_def: ' + item_def);
-			var action = #{jsAction @saveItem(item_def) /};
-			//context.log('action: ' + action);
-			this.partial(action({item: item_def}));
+			var items = this.params.toHash();
+			var action = #{jsAction @Invoices.saveItem() /};
+			this.send($.post, action(), items)
+				.then(function(contents) {
+					this.swap(contents);
+				});
 		});
 		
 		this.get('#/cancelEdits', function (context) {

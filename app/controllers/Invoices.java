@@ -74,16 +74,20 @@ public class Invoices extends Controller {
 	}
 
 	public static void saveItem(@Valid SoldItem item) {
+	    System.out.println("Invoices.saveItem() " + params.allSimple());
 	    if(validation.hasErrors()) {
 	        System.out.println("Invoices.saveItem()" + validation.errorsMap());
 	    }
 	    List<SoldItem> newItems = Cache.get(session.getId() + "-newSoldItems", List.class);
-	    System.out.println("Invoices.saveItem()" + item);
+	    System.out.println("Invoices.saveItem() " + item);
+	    System.out.println("Invoices.saveItem() request: " + request);
+	    
 	    newItems.add(item);
 	    // This will add the list to cache only for the first time,
 	    Cache.add(session.getId() + "-newSoldItems", newItems);
 	    // and this will replace the list with new contents any other time.
 	    Cache.replace(session.getId() + "-newSoldItems", newItems);
+	    
 	    render(newItems);
 	}
 }
