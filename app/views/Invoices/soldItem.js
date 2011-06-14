@@ -10,6 +10,39 @@
 		
 		this.get('#/', function(context) {
 			context.log('main');
+			$('#itemName').autocomplete({
+				source: function (request, response) {
+					Sammy.log("autocomplete::source req:" + request);
+					var url = #{jsAction @Invoices.getCompletions() /};
+					var data = {
+							startsWith: request.term,	
+							maxRows: 12
+					};
+					return context.send($.post, url(), data)
+						.then(function(contents) {
+							response($.map(contents.name, function(item) {
+								return {
+									label: item.name + item.description,
+									value: item.name
+								};	
+							}));
+						});
+				},
+				
+				minLength: 0,
+				
+				select: function (event, ui) {
+					Sammy.log("autocomplete::select");
+				},
+				
+				open: function () {
+					Sammy.log("autocomplete::open");
+				},
+				
+				close: function () {
+					Sammy.log("autocomplete::close");
+				}
+			});
 		});
 		
 		this.post('#/saveItem', function (context) {
@@ -28,15 +61,8 @@
 	});
 	
 	$(function(	) {
+	
+	
 		app.run('#/');
 	});
 })(jQuery);
-/*
-var event = jQuery.Event("saveItem");
-$("#saveItem").click(function(e) {
-    //e.stopImmediatePropagation();
-    this.trigger(event);
-    log('clicked');
-    //return false;
-});
-*/

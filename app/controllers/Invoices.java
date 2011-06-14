@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Invoice;
+import models.Item;
 import models.SoldItem;
 import play.cache.Cache;
 import play.data.validation.Valid;
@@ -89,5 +90,12 @@ public class Invoices extends Controller {
 	    Cache.replace(session.getId() + "-newSoldItems", newItems);
 	    
 	    render(newItems);
+	}
+	
+	public static void getCompletions(String startsWith, int maxRows) {
+	    System.out.println("Invoices.getCompletions() startsWith:" + startsWith);
+	    List<Item> completions = Item.find("byNameIlike", startsWith + "%").fetch(maxRows);
+	    System.out.println("Invoices.getCompletions() number of completions = " + completions.size());
+        renderJSON(completions);
 	}
 }
