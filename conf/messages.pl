@@ -43,6 +43,7 @@ currency.update=Popraw walutę
 delete=Usuń
 edit=zmień
 inventory.index=Magazyn
+inventory.item.unknown=Nieznana pozycja magazynowa
 invoce.item.confirmDelete=Czy na pewno chcesz usunąć tę pozycję?
 invoice.createdAt=F-rę utworzono
 invoice.customer=Klient

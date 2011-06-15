@@ -20,12 +20,17 @@
 					};
 					return context.send($.post, url(), data)
 						.then(function(contents) {
-							response($.map(contents.name, function(item) {
-								return {
-									label: item.name + item.description,
-									value: item.name
-								};	
-							}));
+							context.log("autocomplete contents: " + contents);
+							if (contents.length == 0) {
+								response(["&{'inventory.item.unknown'}"]);
+							} else {
+								response($.map(contents, function(item) {
+									return {
+										label: item.name + " - " + item.description,
+										value: item.name
+									};	
+								}));
+							}
 						});
 				},
 				
