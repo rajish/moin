@@ -1,12 +1,22 @@
 package controllers;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import controllers.Invoices.ItemPresentationModel;
 
 import models.Invoice;
 import models.Item;
 import models.SoldItem;
+import models.VatRate;
 import play.cache.Cache;
 import play.data.validation.Valid;
+import play.db.jpa.Model;
+import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -94,8 +104,41 @@ public class Invoices extends Controller {
 	
 	public static void getCompletions(String startsWith, int maxRows) {
 	    System.out.println("Invoices.getCompletions() startsWith:" + startsWith);
-	    List<Item> completions = Item.find("byNameIlike", startsWith + "%").fetch(maxRows);
+	    List<Item> items = Item.find("byNameIlike", "%" + startsWith + "%").fetch(maxRows);
+	    List<ItemPresentationModel> completions = new ArrayList<ItemPresentationModel>(maxRows);
+	    Locale loc = Lang.getLocale();
+	    NumberFormat currfmt = NumberFormat.getCurrencyInstance(loc);
+	    NumberFormat percfmt = NumberFormat.getPercentInstance(loc);
+	    for (Item item : items) {
+	        String vatRate = null;
+	        try {
+    	        VatRate vr = (VatRate) VatRate.find("byVatStageAndValidFromLessThanEquals", 
+    	                item.vatRateStage, new Date()).fetch(1).get(0);
+    	        vatRate = percfmt.format(vr.rate);
+	        } catch (Exception e) {
+	            // discard
+	        }
+            ItemPresentationModel elem = new ItemPresentationModel(item.id, 
+                    item.name, item.description, currfmt.format(item.getPrice()), vatRate);
+            completions.add(elem);
+        }
 	    System.out.println("Invoices.getCompletions() number of completions = " + completions.size());
         renderJSON(completions);
+	}
+	
+	public static class ItemPresentationModel //extends Model
+	{
+	    public Long id;
+	    public String name;
+	    public String description;
+	    public String price;
+	    public String vatRate;
+	    public ItemPresentationModel(Long ID, String nm, String ds, String pr, String vr) {
+	        id = ID;
+	        name = nm;
+	        description = ds;
+	        price = pr;
+	        vatRate = vr;
+	    }
 	}
 }

@@ -56,6 +56,7 @@
 						$("input[name='item.item.name']").val(fields_values['name']);
 						$("textarea[name='item.item.description']").val(fields_values['description']);
 						$("input[name='item.retailPrice']").val(fields_values['price']);
+						$("input[name='item.rebate']").val("0");
 						$("input[name='item.quantity']").val("1");
 						$("input[name='item.vatRate']").val(fields_values['vatRate']);
 						sammy.trigger('recalc');
