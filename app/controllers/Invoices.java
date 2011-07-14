@@ -1,6 +1,7 @@
 package controllers;
 
 import java.math.BigDecimal;
+import java.text.AttributedCharacterIterator.Attribute;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,19 +108,16 @@ public class Invoices extends Controller {
 	    List<Item> items = Item.find("byNameIlike", "%" + startsWith + "%").fetch(maxRows);
 	    List<ItemPresentationModel> completions = new ArrayList<ItemPresentationModel>(maxRows);
 	    Locale loc = Lang.getLocale();
-	    NumberFormat currfmt = NumberFormat.getCurrencyInstance(loc);
-	    NumberFormat percfmt = NumberFormat.getPercentInstance(loc);
 	    for (Item item : items) {
-	        String vatRate = null;
+	        VatRate vatRate = null;
 	        try {
-    	        VatRate vr = (VatRate) VatRate.find("byVatStageAndValidFromLessThanEquals", 
+    	        vatRate = (VatRate) VatRate.find("byVatStageAndValidFromLessThanEquals", 
     	                item.vatRateStage, new Date()).fetch(1).get(0);
-    	        vatRate = percfmt.format(vr.rate);
 	        } catch (Exception e) {
 	            // discard
 	        }
             ItemPresentationModel elem = new ItemPresentationModel(item.id, 
-                    item.name, item.description, currfmt.format(item.getPrice()), vatRate);
+                    item.name, item.description, item.getPrice(), vatRate.rate, loc);
             completions.add(elem);
         }
 	    System.out.println("Invoices.getCompletions() number of completions = " + completions.size());
@@ -131,14 +129,19 @@ public class Invoices extends Controller {
 	    public Long id;
 	    public String name;
 	    public String description;
-	    public String price;
-	    public String vatRate;
-	    public ItemPresentationModel(Long ID, String nm, String ds, String pr, String vr) {
+	    public BigDecimal price;
+	    public BigDecimal vatRate;
+	    public String currFmt;
+	    public String decimalPoint; // unicode code of decimal point according to locale
+	    public ItemPresentationModel(Long ID, String nm, String ds, BigDecimal pr, BigDecimal rate, Locale loc) {
+	        NumberFormat currfmt = NumberFormat.getCurrencyInstance(loc);
 	        id = ID;
 	        name = nm;
 	        description = ds;
 	        price = pr;
-	        vatRate = vr;
+	        vatRate = rate;
+	        currFmt = currfmt.getCurrency().getSymbol();
+	        decimalPoint = currfmt.format(0.1).substring(1, 2);
 	    }
 	}
 }

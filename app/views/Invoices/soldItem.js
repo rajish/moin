@@ -71,6 +71,10 @@
 		this.bind('recalc', function (){
 			// TODO recalculate values in the affected line
 			Sammy.log("event:recalc ");
+			var price = parseFloat($("input[name='item.retailPrice']").val());
+			var qty   = parseFloat($("input[name='item.quantity']").val());
+			var vat   = parseFloat($("input[name='item.vatRate']").val());
+			$('#newItemGross').text(price * (1 + vat) * qty);
 		});
 		
 		this.post('#/saveItem', function (context) {
