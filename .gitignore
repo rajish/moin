@@ -12,3 +12,5 @@
 cobertura.ser
 /bin
 .emacs.desktop*
+/public/javascripts/jquery-ui-1.8.13.custom-smoothness.zip
+/public/javascripts/quirkey-sammy-v0.6.3-0-g74f3cd9.zip
