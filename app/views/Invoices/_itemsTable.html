@@ -6,8 +6,12 @@
 #{/set}
 
 #{set 'moreScripts'}
+    <script src="@{'/public/javascripts/sammy.js'}"></script>
     <script src="@{'/public/javascripts/jquery.tmpl.js'}"></script>
     <script src="@{'/public/javascripts/knockout-1.2.1.debug.js'}"></script>
+	<script>
+    	#{include 'Invoices/soldItem.js' /}
+	</script>
 #{/set}
 
 <form action="#/saveItem" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="itemsTable">
@@ -73,7 +77,7 @@
         </td>
         
         <td>
-            <div class="item" id="newItemNet">
+            <div class="item" id="newItemNett" data-bind="text: itemNettVal">
             </div>
         </td>
         

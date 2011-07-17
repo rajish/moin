@@ -93,7 +93,21 @@
 
     });
 
+
     $(function( ) {
-        app.run('#/');
+    	var viewModel = {
+    		itemPrice: ko.observable(0),
+    		itemDiscount: ko.observable(0),
+    		itemQty: ko.observable(1),
+    		itemNettVal: ko.dependentObservable(function recalc() {
+    			return "Success";
+    		}),
+    		itemVat: ko.observable(0),
+    		itemTotVal: 0,
+    		itemNotes: ''
+    	};
+
+    	ko.applyBindings(viewModel);
+    	app.run('#/');
     });
 })(jQuery);
