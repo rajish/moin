@@ -1,17 +1,17 @@
 
 #{set 'moreStyles'}
     <style type="text/css">
-	    #{include 'Invoices/_itemsTable.css' /}
-	</style>
+            #{include 'Invoices/_itemsTable.css' /}
+        </style>
 #{/set}
 
 #{set 'moreScripts'}
     <script src="@{'/public/javascripts/sammy.js'}"></script>
     <script src="@{'/public/javascripts/jquery.tmpl.js'}"></script>
     <script src="@{'/public/javascripts/knockout-1.2.1.debug.js'}"></script>
-	<script>
-    	#{include 'Invoices/soldItem.js' /}
-	</script>
+        <script>
+        #{include 'Invoices/soldItem.js' /}
+        </script>
 #{/set}
 
 <form action="#/saveItem" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="itemsTable">
@@ -48,7 +48,7 @@
             <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" form="itemsTable"/>
             <a href="#/cancelEdits"><image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"></a>
         </td>
-        
+
         <td>
             <div class="item">
                 <input class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
@@ -57,44 +57,44 @@
                 <textarea class="itemDesc" rows="2" cols="30" name="item.item.description" placeholder="&{'invoice.item.description'}" ></textarea>
             </div>
         </td>
-        
+
         <td>
             <div class="item">
-                <input type="text" size="10" name="item.retailPrice" placeholder="&{'invoice.item.price'}" />
+                <input type="text" size="10" name="item.retailPrice" placeholder="&{'invoice.item.price'}" class="autocompleteFix" data-bind="value: itemPrice, valueUpdate: ['keyup', 'afterinit']"/>
             </div>
         </td>
-        
+
         <td>
             <div class="item">
-                <input type="text" size="4" name="item.rebate" placeholder="&{'invoice.item.rebate'}" />
+                <input type="text" size="4" name="item.rebate" placeholder="&{'invoice.item.rebate'}" class="autocompleteFix" data-bind="value: itemDiscount, valueUpdate: ['keyup', 'afterinit']"/>
             </div>
         </td>
-        
+
         <td>
             <div class="item">
-                <input type="text" size="7" name="item.quantity" placeholder="&{'invoice.item.quantity'}" />
+                <input type="text" size="7" name="item.quantity" placeholder="&{'invoice.item.quantity'}" class="autocompleteFix" data-bind="value: itemQty, valueUpdate: ['keyup', 'afterinit']"/>
             </div>
         </td>
-        
+
         <td>
             <div class="item" id="newItemNett" data-bind="text: itemNettVal">
             </div>
         </td>
-        
+
         <td>
+                <input type="text" size="4" name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" class="autocompleteFix" data-bind="value: itemVat, valueUpdate: ['keyup', 'afterinit']"/>
             <div class="item">
-                <input type="text" size="4" name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" />
             </div>
         </td>
-        
+
         <td>
-            <div class="item" id="newItemGross">
+            <div class="item" id="newItemGross" data-bind="text: itemTotVal">
             </div>
         </td>
-        
+
         <td>
             <div class="item">
-                <input type="text" name="item.notes" placeholder="&{'invoice.item.notes'}"/>
+                <input type="text" name="item.notes" placeholder="&{'invoice.item.notes'}" data-bind="value: itemNotes, valueUpdate: ['keyup', 'afterinit']"/>
             </div>
         </td>
     </tr>

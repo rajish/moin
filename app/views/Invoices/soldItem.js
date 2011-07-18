@@ -59,22 +59,16 @@
                         $("input[name='item.rebate']").val("0");
                         $("input[name='item.quantity']").val("1");
                         $("input[name='item.vatRate']").val(fields_values['vatRate']);
-                        sammy.trigger('recalc');
+                        $(".autocompleteFix").each(function() {
+                            Sammy.log("Triggering KO's init event for: " + this);
+                            ko.utils.triggerEvent(this, 'init');
+                        });
                         fields_values = null;
                     } else {
                         Sammy.log("fields_values are null");
                     }
                 }
             });
-        });
-
-        this.bind('recalc', function (){
-            // TODO recalculate values in the affected line
-            Sammy.log("event:recalc ");
-            var price = parseFloat($("input[name='item.retailPrice']").val());
-            var qty   = parseFloat($("input[name='item.quantity']").val());
-            var vat   = parseFloat($("input[name='item.vatRate']").val());
-            $('#newItemGross').text(price * (1 + vat) * qty);
         });
 
         this.post('#/saveItem', function (context) {
@@ -95,19 +89,27 @@
 
 
     $(function( ) {
-    	var viewModel = {
-    		itemPrice: ko.observable(0),
-    		itemDiscount: ko.observable(0),
-    		itemQty: ko.observable(1),
-    		itemNettVal: ko.dependentObservable(function recalc() {
-    			return "Success";
-    		}),
-    		itemVat: ko.observable(0),
-    		itemTotVal: 0,
-    		itemNotes: ''
-    	};
+        var viewModel = {
+                itemPrice: ko.observable(0),
+                itemDiscount: ko.observable(0),
+                itemQty: ko.observable(1),
+                itemVat: ko.observable(0),
+                itemNotes: ko.observable('')
+        };
 
-    	ko.applyBindings(viewModel);
-    	app.run('#/');
+        viewModel.itemNettVal = ko.dependentObservable(function () {
+            var retval = parseFloat(viewModel.itemPrice()) * parseFloat(viewModel.itemQty()) * (1 - parseFloat(viewModel.itemDiscount())/100);
+            Sammy.log("KO:itemNettVal recalculation: " + retval);
+            return retval;
+        });
+
+        viewModel.itemTotVal = ko.dependentObservable(function (){
+            var retval = parseFloat(viewModel.itemNettVal()) * (1 + parseFloat(viewModel.itemVat())/100);
+            Sammy.log("KO:itemTotVal recalculation: " + retval + " vat factor: " + (1 + parseFloat(viewModel.itemVat())/100));
+            return retval;
+        });
+
+        ko.applyBindings(viewModel);
+        app.run('#/');
     });
 })(jQuery);
