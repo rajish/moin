@@ -9,16 +9,9 @@
     <script src="@{'/public/javascripts/sammy.js'}"></script>
     <script src="@{'/public/javascripts/jquery.tmpl.js'}"></script>
     <script src="@{'/public/javascripts/knockout-1.2.1.debug.js'}"></script>
-        <script>
-        #{include 'Invoices/soldItem.js' /}
-        </script>
 #{/set}
 
-<form action="#/saveItem" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="itemsTable">
-<input type="hidden" name="authenticityToken" value="d04be371857547c9d6bfecc9db58eed931cc9c10">
-
-*{ The blessed form definition below complains something about problem with casting String to Router.ActionDefinition }*
-*{#{form '#/saveItem', id:'itemsTable'}*
+<form data-bind="submit: addItem" accept-charset="utf-8" id="itemsTable">
 
 <table class="items Invoice" >
     <thead>
@@ -35,23 +28,29 @@
         </tr>
     </thead>
 
-    #{list items:entity?.items, as:'item'}
+*{    #{list items:entity?.items, as:'item'}
         #{include 'Invoices/_itemRow.html' /}
     #{/list}
 
     #{list items:newItems, as:'item'}
         #{include 'Invoices/_itemRow.html' /}
     #{/list}
-
+}*
+    <tbody data-bind='template: {name: "itemRowTemplate", foreach: items}'></tbody>
+</table>
+<script type="text/html" id="itemRowTemplate">
     <tr class="itemNew">
         <td>
-            <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" form="itemsTable"/>
-            <a href="#/cancelEdits"><image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"></a>
+            <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" />
+            <a href="#" data-bind="click: function() { viewModel.deleteItem($data) }">
+                <image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16">
+            </a>
         </td>
 
         <td>
             <div class="item">
-                <input class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
+                <input data-bind="autocomplete: suggestedNames, value: name, valueUpdate: 'afterkeydown'" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
+                *{<input data-bind="jqAuto: { autoFocus: true }, jqAutoSource: suggestedNames, jqAutoValue: viewModel.items, jqAutoSourceLabel: 'name', jqAutoSourceValue: 'id', valueUpdate: ['keyup', 'afterinit']" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />}*
             </div>
             <div class="item">
                 <textarea class="itemDesc" rows="2" cols="30" name="item.item.description" placeholder="&{'invoice.item.description'}" ></textarea>
@@ -60,44 +59,48 @@
 
         <td>
             <div class="item">
-                <input type="text" size="10" name="item.retailPrice" placeholder="&{'invoice.item.price'}" class="autocompleteFix" data-bind="value: itemPrice, valueUpdate: ['keyup', 'afterinit']"/>
+                <input type="text" size="10" data-bind="value: price, valueUpdate: ['keyup', 'afterinit']" name="item.retailPrice" placeholder="&{'invoice.item.price'}" class="autocompleteFix" />
             </div>
         </td>
 
         <td>
             <div class="item">
-                <input type="text" size="4" name="item.rebate" placeholder="&{'invoice.item.rebate'}" class="autocompleteFix" data-bind="value: itemDiscount, valueUpdate: ['keyup', 'afterinit']"/>
+                <input type="text" size="4" data-bind="value: rebate, valueUpdate: ['keyup', 'afterinit']" name="item.rebate" placeholder="&{'invoice.item.rebate'}" class="autocompleteFix" />
             </div>
         </td>
 
         <td>
             <div class="item">
-                <input type="text" size="7" name="item.quantity" placeholder="&{'invoice.item.quantity'}" class="autocompleteFix" data-bind="value: itemQty, valueUpdate: ['keyup', 'afterinit']"/>
+                <input type="text" size="7" data-bind="value: quantity, valueUpdate: ['keyup', 'afterinit']" name="item.quantity" placeholder="&{'invoice.item.quantity'}" class="autocompleteFix" />
             </div>
         </td>
 
         <td>
-            <div class="item" id="newItemNett" data-bind="text: itemNettVal">
+            <div class="item" id="newItemNett" data-bind="text: nettVal">
             </div>
         </td>
 
         <td>
-                <input type="text" size="4" name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" class="autocompleteFix" data-bind="value: itemVat, valueUpdate: ['keyup', 'afterinit']"/>
+                <input type="text" size="4" data-bind="value: vatRate, valueUpdate: ['keyup', 'afterinit']" name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" class="autocompleteFix" />
             <div class="item">
             </div>
         </td>
 
         <td>
-            <div class="item" id="newItemGross" data-bind="text: itemTotVal">
+            <div class="item" id="newItemGross" data-bind="text: grossVal">
             </div>
         </td>
 
         <td>
             <div class="item">
-                <input type="text" name="item.notes" placeholder="&{'invoice.item.notes'}" data-bind="value: itemNotes, valueUpdate: ['keyup', 'afterinit']"/>
+                <input type="text" data-bind="value: notes, valueUpdate: ['keyup', 'afterinit']" name="item.notes" placeholder="&{'invoice.item.notes'}" />
             </div>
         </td>
     </tr>
-</table>
-*{#{/form}*
+</script>
+
 </form>
+
+<script type="text/javascript">
+#{include 'Invoices/soldItem.js' /}
+</script>
