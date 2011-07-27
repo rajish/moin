@@ -115,7 +115,7 @@ var item  = function () {
                 console.log("jsonResult: ", jsonResult);
                 var mappedItems = $.map(jsonResult, function(el) {
                     return {
-                        label: el.name + " - " + el.description,
+                        name: el.name + " - " + el.description,
                         value: el
                     };
                 });

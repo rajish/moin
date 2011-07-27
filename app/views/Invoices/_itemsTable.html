@@ -49,8 +49,8 @@
 
         <td>
             <div class="item">
-                <input data-bind="autocomplete: suggestedNames, value: name, valueUpdate: 'afterkeydown'" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
-                *{<input data-bind="jqAuto: { autoFocus: true }, jqAutoSource: suggestedNames, jqAutoValue: viewModel.items, jqAutoSourceLabel: 'name', jqAutoSourceValue: 'id', valueUpdate: ['keyup', 'afterinit']" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />}*
+                *{<input data-bind="value: name, autocomplete: suggestedNames, autocompleteText: 'name', valueUpdate: 'afterkeydown'" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />}*
+                <input data-bind="jqAuto: { autoFocus: true }, jqAutoSource: suggestedNames, jqAutoValue: name, jqAutoSourceLabel: 'name', jqAutoSourceValue: 'value', valueUpdate: ['keyup', 'afterinit']" class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
             </div>
             <div class="item">
                 <textarea class="itemDesc" rows="2" cols="30" name="item.item.description" placeholder="&{'invoice.item.description'}" ></textarea>
