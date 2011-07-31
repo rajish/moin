@@ -14,6 +14,7 @@ Edit\ Invoice=Edytuj fakturę
 Fullname=Pełna nazwa
 Invoices=Faktury
 Is\ Admin=Admin?
+Add\ Item=Dodaj linię
 Password=Hasło
 Save=Zapisz
 Show=Wyświetl

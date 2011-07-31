@@ -1,50 +1,50 @@
 
 #{set 'moreStyles'}
-    <style type="text/css">
-            #{include 'Invoices/_itemsTable.css' /}
-        </style>
+<style type="text/css">
+  #{include 'Invoices/_itemsTable.css' /}
+</style>
 #{/set}
 
 #{set 'moreScripts'}
-    <script src="@{'/public/javascripts/sammy.js'}"></script>
-    <script src="@{'/public/javascripts/jquery.tmpl.js'}"></script>
-    <script src="@{'/public/javascripts/knockout-1.2.1.debug.js'}"></script>
-    <script src="@{'/public/javascripts/knockout.mapping-latest.debug.js'}"></script>
+<script src="@{'/public/javascripts/sammy.js'}"></script>
+<script src="@{'/public/javascripts/jquery.tmpl.js'}"></script>
+<script src="@{'/public/javascripts/knockout-1.2.1.debug.js'}"></script>
+<script src="@{'/public/javascripts/knockout.mapping-latest.debug.js'}"></script>
 #{/set}
 
-<form data-bind="submit: addItem" accept-charset="utf-8" id="itemsTable">
-
 <table class="items Invoice" >
-    <thead>
-        <tr>
-            <th><!-- actions --></th>
-            <th>&{'invoice.item.description'}</th>
-            <th>&{'invoice.item.price'}</th>
-            <th>&{'invoice.item.rebate'}</th>
-            <th>&{'invoice.item.quantity'}</th>
-            <th>&{'invoice.item.netTotal'}</th>
-            <th>&{'invoice.item.vatRate'}</th>
-            <th>&{'invoice.item.grandTotal'}</th>
-            <th>&{'invoice.item.notes'}</th>
-        </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th><!-- actions --></th>
+      <th>&{'invoice.item.description'}</th>
+      <th>&{'invoice.item.price'}</th>
+      <th>&{'invoice.item.rebate'}</th>
+      <th>&{'invoice.item.quantity'}</th>
+      <th>&{'invoice.item.netTotal'}</th>
+      <th>&{'invoice.item.vatRate'}</th>
+      <th>&{'invoice.item.grandTotal'}</th>
+      <th>&{'invoice.item.notes'}</th>
+    </tr>
+  </thead>
 
-*{    #{list items:entity?.items, as:'item'}
-        #{include 'Invoices/_itemRow.html' /}
-    #{/list}
-
-    #{list items:newItems, as:'item'}
-        #{include 'Invoices/_itemRow.html' /}
-    #{/list}
-}*
-    <tbody data-bind='template: {name: "itemRowTemplate", foreach: items}'></tbody>
+  <tbody data-bind='template: {name: "itemRowTemplate", foreach: items}'>
+    <tr>
+      <td colspan="7"> <!-- empty --> </td>
+      <td><div class="item" data-bind="text: total"></div></td>
+      <td> <!-- empty --> </td>
+    </tr>
+  </tbody>
 </table>
+
+<button data-bind="click: addItem">&{'Add Item'}</button>
+
+
 <script type="text/html" id="itemRowTemplate">
   <tr class="itemNew">
     <td>
-      <input type="image" id="saveItem" name="&{'Save'}" alt="&{'Save'}" height="16" src="/public/images/34aL/shadow/standart/png/24x24/001_06.png" />
       <a href="#" data-bind="click: function() { viewModel.deleteItem($data) }">
-        <image id="cancelEdits" src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" alt="&{'Cancel'}" title="&{'Cancel'}" height="16">
+        <image id="cancelEdits" alt="&{'Cancel'}" title="&{'Cancel'}" height="16"
+               src="/public/images/34aL/shadow/standart/png/24x24/001_05.png" >
       </a>
     </td>
 
@@ -54,25 +54,29 @@
                class="itemDesc" id="itemName" type="text" size="30" name="item.item.name" placeholder="&{'invoice.item.name'}" />
       </div>
       <div class="item">
-        <textarea class="itemDesc" rows="2" cols="30" name="item.item.description" placeholder="&{'invoice.item.description'}" ></textarea>
+        <textarea data-bind="value: description" class="itemDesc" rows="2" cols="30"
+                  name="item.item.description" placeholder="&{'invoice.item.description'}" ></textarea>
       </div>
     </td>
 
     <td>
       <div class="item">
-        <input type="text" size="10" data-bind="value: price, valueUpdate: ['keyup', 'afterinit']" name="item.retailPrice" placeholder="&{'invoice.item.price'}" class="autocompleteFix" />
+        <input type="text" size="10" data-bind="value: price, valueUpdate: ['keyup', 'afterinit']"
+               name="item.retailPrice" placeholder="&{'invoice.item.price'}" />
       </div>
     </td>
 
     <td>
       <div class="item">
-        <input type="text" size="4" data-bind="value: rebate, valueUpdate: ['keyup', 'afterinit']" name="item.rebate" placeholder="&{'invoice.item.rebate'}" class="autocompleteFix" />
+        <input type="text" size="4" data-bind="value: rebate, valueUpdate: ['keyup', 'afterinit']"
+               name="item.rebate" placeholder="&{'invoice.item.rebate'}" />
       </div>
     </td>
 
     <td>
       <div class="item">
-        <input type="text" size="7" data-bind="value: quantity, valueUpdate: ['keyup', 'afterinit']" name="item.quantity" placeholder="&{'invoice.item.quantity'}" class="autocompleteFix" />
+        <input type="text" size="7" data-bind="value: quantity, valueUpdate: ['keyup', 'afterinit']"
+               name="item.quantity" placeholder="&{'invoice.item.quantity'}" />
       </div>
     </td>
 
@@ -82,7 +86,8 @@
     </td>
 
     <td>
-      <input type="text" size="4" data-bind="value: vatRate, valueUpdate: ['keyup', 'afterinit']" name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" class="autocompleteFix" />
+      <input type="text" size="4" data-bind="value: vatRate, valueUpdate: ['keyup', 'afterinit']"
+             name="item.vatRate" placeholder="&{'invoice.item.vatRate'}" />
       <div class="item">
       </div>
     </td>
@@ -94,13 +99,12 @@
 
     <td>
       <div class="item">
-        <input type="text" data-bind="value: notes, valueUpdate: ['keyup', 'afterinit']" name="item.notes" placeholder="&{'invoice.item.notes'}" />
+        <input type="text" data-bind="value: notes, valueUpdate: ['keyup', 'afterinit']"
+               name="item.notes" placeholder="&{'invoice.item.notes'}" />
       </div>
     </td>
   </tr>
 </script>
-
-</form>
 
 <script type="text/javascript">
 #{include 'Invoices/soldItem.js' /}

@@ -69,14 +69,14 @@
   </div>
   <span class="error">${errors.forKey('entity.paymentPeriod')}</span>
 </div>
-#{/form}
 
 <div id="invoiceItemsTable">
 *{ The itemsTable is a form itself }*
     #{include 'Invoices/_itemsTable.html' /}
 </div>
 
-*{ The fields below still belong to the 'outer' form }*
+*{ The fi
+elds below still belong to the 'outer' form }*
 
  <div class="row">
   <div class="label">&{'invoice.notes'}</div>
@@ -116,3 +116,4 @@
 </div>
 
 <a href="@{Invoices.index}">&{'Cancel'}</a>
+#{/form}
