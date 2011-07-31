@@ -100,29 +100,28 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 }
 
 var suggestedNames = ko.observableArray([]);
+var currentLine = null;
 
 var item  = function () {
     this.name = ko.observable('');
     this.name.subscribe(function () {
         console.log("+++completion subscriber");
-        var self = this;
+        currentLine = this;
         suggestedNames([]);
         var url = #{jsAction @Invoices.getCompletions() /};
-        var data = {startsWith: self.name(), maxRows: 12};
-        //setTimeout(function () {
+        var data = {startsWith: this.name(), maxRows: 12};
         $.post(url(), data, function(jsonResult) {
             if(jsonResult) {
                 console.log("jsonResult: ", jsonResult);
                 var mappedItems = $.map(jsonResult, function(el) {
                     return {
-                        name: el.name + " - " + el.description,
+                        label: el.name + " - " + el.description,
                         value: el
                     };
                 });
                 suggestedNames(mappedItems);
             }
         });
-        //}.bind(this), 1000);
         console.log("---completion subscriber");
     }.bind(this));
     this.description = ko.observable('');
@@ -155,106 +154,41 @@ var viewModel = {
     }
 };
 
-
+var fields_values = null;
 ko.bindingHandlers.autocomplete = {
     update: function(element, list, allBindings) {
-        console.log("+++autocompletion hook: element " + element.name + ", list: " + list + ", allBindings().autocompleteText: " + allBindings().autocompleteText);
-        var searchFor = allBindings().autocompleteText;
-        var completionValues = ko.utils.arrayMap(list(), function (item) {
-            return item[searchFor];
-        });
+        // console.log("+++autocompletion hook: element " + element.name + ", list: " + list() + ", allBindings().autocompleteText: " + allBindings().autocompleteText);
         $(element).autocomplete({
-            source: completionValues,
-            create: function(event, ui) {
-                console.log("autocomplete::create");
-            },
-            search: function(event, ui) {
-                console.log("autocomplete::search");
-            },
-            open: function(event, ui) {
-                console.log("autocomplete::open");
-            },
             focus: function(event, ui) {
                 console.log("autocomplete::focus");
+                fields_values = ui.item.value;
+                currentLine.name(fields_values['name']);
+                return false;
             },
+            source: list(),
             select: function(event, ui) {
                 console.log("autocomplete::select");
+                fields_values = ui.item.value;
+                currentLine.name(fields_values['name']);
+                return false;
             },
             close: function(event, ui) {
                 console.log("autocomplete::close");
-            },
-            change: function(event, ui) {
-                console.log("autocomplete::change");
+                if(fields_values != null) {
+                    //currentLine.name(fields_values['name']);
+                    //currentLine.description(fields_values['description']);
+                    ko.mapping.updateFromJS(currentLine, fields_values);
+                    fields_values = null;
+                } else {
+                    console.log("fields_values are null");
+                }
             }
         });
-        console.log("---autocompletion hook");
-        //$(element).autocomplete().trigger("setOptions", { data: ko.utils.unwrapObservable(list) });
+        // console.log("---autocompletion hook");
+        //$(element).autocomplete().trigger("setOptions", { data:  });
     }
 };
 
-//jqAuto -- additional options to pass to autocomplete
-//jqAutoSource -- the array of choices
-//jqAutoValue -- where to write the selected value
-//jqAutoSourceLabel -- the property name that should be displayed in the possible choices
-//jqAutoSourceValue -- the property name to use for the value
-ko.bindingHandlers.jqAuto = {
-    init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
-        console.log("jqAuto::init");
-        var options = valueAccessor() || {};
-        var allBindings = allBindingsAccessor();
-        var unwrap = ko.utils.unwrapObservable;
-
-        //handle value changing
-        var modelValue = allBindings.jqAutoValue;
-        if (modelValue) {
-            var handleValueChange = function(event, ui) {
-                var valueToWrite = ui.item ? ui.item.value : $(element).val();
-                if (ko.isWriteableObservable(modelValue)) {
-                    modelValue(valueToWrite );
-
-                } else {  //write to non-observable
-                    if (allBindings['_ko_property_writers'] && allBindings['_ko_property_writers']['jqAutoValue'])
-                        allBindings['_ko_property_writers']['jqAutoValue'](valueToWrite );
-                }
-            };
-
-            options.change = handleValueChange;
-            options.select = handleValueChange;
-        }
-
-        //handle the choices being updated in a DO, so the update function doesn't have to do it each time the value is updated
-        var mappedSource = ko.dependentObservable(function() {
-            var source = unwrap(allBindings.jqAutoSource);
-            var valueProp = unwrap(allBindings.jqAutoSourceValue);
-            var labelProp = unwrap(allBindings.jqAutoSourceLabel) || valueProp;
-
-            var mapped = ko.utils.arrayMap(source, function(item) {
-                var result = {};
-                result.label = labelProp ? unwrap(item[labelProp]) : unwrap(item).toString();  //show in pop-up choices
-                result.value = valueProp ? unwrap(item[valueProp]) : unwrap(item).toString();  //value
-                return result;
-            });
-            return mapped;
-        });
-
-        mappedSource.subscribe(function(newValue) {
-            $(element).autocomplete("option", "source", newValue);
-        });
-
-        options.source = mappedSource();
-
-        $(element).autocomplete(options);
-    },
-    update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
-        //update value based on a model change
-        console.log("jqAuto::update");
-        var allBindings = allBindingsAccessor();
-        var modelValue = allBindings.jqAutoValue;
-        if (modelValue) {
-            $(element).val(ko.utils.unwrapObservable(modelValue));
-        }
-    }
-};
 $( function () {
     ko.applyBindings(viewModel, document.getElementById("itemsTable"));
 });
